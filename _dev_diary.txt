@@ -19,5 +19,7 @@ Installed seed-fu from outdated master branch with script/plugin install git://g
 Sat Aug 09 12:46:16 -0700 2008
 Verified that server starts and runs fine. Declared Course and Evaluation models, and ported the specs over. Changed the specs to not rely on fixture-replacement. Verified that specs pass.
 
+Ported over scraping stuff. Put specs for it in spec/lib and verified pass.
+
 
 puts "-"*80; puts Time.new

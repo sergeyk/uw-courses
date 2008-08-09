@@ -1,0 +1,71 @@
+Form A: Small lecture/discussion     "11" surveyed    "14" enrolled  Question 	Excellent 	Very Good 	Good 	Fair 	Poor 	Very Poor 	Median
+The course as a whole:	18%	55%	27%	0%	0%	0%	3.92
+The course content:	27%	45%	27%	0%	0%	0%	4.00
+Instructor's contribution:	55%	27%	18%	0%	0%	0%	4.58
+Instructor's effectiveness:	36%	45%	18%	0%	0%	0%	4.20
+Instuctor's interest:	45%	36%	9%	9%	0%	0%	4.38
+Amount learned:	36%	45%	18%	0%	0%	0%	4.20
+Grading techniques:	36%	36%	27%	0%	0%	0%	4.13
+
+Form B: Large Lecture     "83" surveyed    "165" enrolled  Question 	Excellent 	Very Good 	Good 	Fair 	Poor 	Very Poor 	Median
+The course as a whole: 	29%	36%	29%	4%	1%	1%	3.92
+The course content: 	30%	46%	21%	0%	1%	1%	4.08
+Instructor's contribution: 	44%	37%	17%	1%	0%	1%	4.33
+Instructor's effectiveness: 	40%	34%	18%	6%	0%	1%	4.21
+Instuctor's interest: 	20%	30%	30%	17%	0%	3%	3.50
+Amount learned: 	29%	38%	30%	1%	1%	1%	3.93
+Grading techniques: 	14%	29%	29%	22%	4%	1%	3.28
+
+Form C: Seminar/Discussion     "2" surveyed    "4" enrolled  Question 	Excellent 	Very Good 	Good 	Fair 	Poor 	Very Poor 	Median
+The course as a whole: 	100%	0%	0%	0%	0%	0%	5.00
+The course content: 	0%	100%	0%	0%	0%	0%	4.00
+Instructor's contribution: 	50%	50%	0%	0%	0%	0%	4.50
+Instructor's effectiveness: 	50%	50%	0%	0%	0%	0%	4.50
+Instuctor's interest: 	100%	0%	0%	0%	0%	0%	5.00
+Amount learned: 	100%	0%	0%	0%	0%	0%	5.00
+Grading techniques: 	0%	100%	0%	0%	0%	0%	4.00
+
+Form D: Problem Solving     "15" surveyed    "23" enrolled  Question 	Excellent 	Very Good 	Good 	Fair 	Poor 	Very Poor 	Median
+The course as a whole: 	29%	14%	36%	21%	0%	0%	3.30
+The course content: 	29%	7%	50%	14%	0%	0%	3.21
+Instructor's contribution: 	46%	15%	31%	8%	0%	0%	4.25
+Instructor's effectiveness: 	31%	31%	15%	15%	0%	8%	3.88
+Instuctor's interest: 	23%	23%	46%	8%	0%	0%	3.42
+Amount learned: 	14%	43%	36%	7%	0%	0%	3.67
+Grading techniques: 	46%	15%	31%	8%	0%	0%	4.25
+
+Form E: Skill aquisition     "10" surveyed    "25" enrolled  Question 	Excellent 	Very Good 	Good 	Fair 	Poor 	Very Poor 	Median
+The course as a whole: 	10%	70%	20%	0%	0%	0%	3.93
+The course content: 	10%	70%	20%	0%	0%	0%	3.93
+Instructor's contribution: 	10%	30%	60%	0%	0%	0%	3.33
+Instructor's effectiveness: 	0%	40%	60%	0%	0%	0%	3.33
+Instuctor's interest: 	0%	50%	50%	0%	0%	0%	3.50
+Amount learned: 	0%	60%	30%	10%	0%	0%	3.67
+Grading techniques: 	20%	80%	0%	0%	0%	0%	4.13
+
+Form J: Clinical Studio      "17" surveyed    "20" enrolled  Question 	Excellent 	Very Good 	Good 	Fair 	Poor 	Very Poor 	Median
+Rotation/studio as a whole:	6%	71%	24%	0%	0%	0%	3.88
+Procedures/skill taught:	12%	41%	47%	0%	0%	0%	3.57
+Instructor's contribution:	31%	44%	25%	0%	0%	0%	4.07
+Instructor's effectiveness:	18%	41%	29%	12%	0%	0%	3.71
+Instructor was knowledgeable:	47%	47%	6%	0%	0%	0%	4.44
+Clear and organized:	12%	41%	29%	18%	0%	0%	3.57
+Instructor was enthusiastic:	41%	47%	6%	6%	0%	0%	4.31
+Instructor was challenging:	24%	65%	12%	0%	0%	0%	4.09
+Instructor established rapport:	25%	44%	25%	6%	0%	0%	3.93
+Instructor was accessible:	41%	35%	18%	6%	0%	0%	4.25
+
+Form K: Project     "13" surveyed    "16" enrolled  Question 	Excellent 	Very Good 	Good 	Fair 	Poor 	Very Poor 	Median
+The course as a whole:	38%	46%	15%	0%	0%	0%	4.25
+The course content:	31%	54%	15%	0%	0%	0%	4.14
+Instructor's contribution:	54%	31%	15%	0%	0%	0%	4.57
+Instructor's effectiveness:	46%	31%	23%	0%	0%	0%	4.38
+
+Form 2: Lecture -- Assignments     "16" surveyed    "27" enrolled  Question 	Excellent 	Very Good 	Good 	Fair 	Poor 	Very Poor 	Median
+The course as a whole:	50%	19%	31%	0%	0%	0%	4.50
+The course content:	50%	12%	38%	0%	0%	0%	4.50
+Instructor overall:	56%	19%	19%	6%	0%	0%	4.61
+Instructor's contribution:	56%	12%	19%	6%	6%	0%	4.61
+Instuctor's interest:	50%	21%	14%	7%	7%	0%	4.50
+Amount learned:	47%	27%	20%	0%	7%	0%	4.38
+Relevance and usefulness of homework:	53%	47%	0%	0%	0%	0%	4.56

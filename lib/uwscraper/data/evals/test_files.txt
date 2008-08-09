@@ -1,0 +1,5 @@
+http://iamthedivebomber.net/uwcourses/uwscraper/data/evals/spring2008/SPHSC571A3426.html
+http://iamthedivebomber.net/uwcourses/uwscraper/data/evals/spring2008/ECON200C4234.html
+http://iamthedivebomber.net/uwcourses/uwscraper/data/evals/spring2008/TSMIN4241213.html
+http://iamthedivebomber.net/uwcourses/uwscraper/data/evals/spring2008/BBUS305A1029.html
+http://iamthedivebomber.net/uwcourses/uwscraper/data/evals/spring2008/SOCW584A1969.html
