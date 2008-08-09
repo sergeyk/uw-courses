@@ -1,0 +1,1 @@
+require 'clear_empty_attributes'

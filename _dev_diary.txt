@@ -1,0 +1,22 @@
+Fri Aug 08 22:44:28 -0700 2008
+Starting over in a clean directory again. Want to get to a usable state this weekend.
+
+Installed Edge Rails into vendor/ with git submodule, as in http://woss.name/2008/04/11/using-git-submodules-to-track-vendorrails-2/.
+
+Installed Rspec with
+script/plugin install git://github.com/dchelimsky/rspec.git
+script/plugin install git://github.com/dchelimsky/rspec-rails.git
+script/generate rspec
+
+Sat Aug 09 12:12:38 -0700 2008
+Installed (script/plugin install) clear_empty_attributes from http://github.com/collectiveidea/clear_empty_attributes/tree/master.
+
+Installed acts_as_ferret with script/plugin install svn://projects.jkraemer.net/acts_as_ferret/tags/stable/acts_as_ferret.
+
+Installed seed-fu from outdated master branch with script/plugin install git://github.com/mbleigh/seed-fu.git.
+
+
+
+
+
+puts Time.new
