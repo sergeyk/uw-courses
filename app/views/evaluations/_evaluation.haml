@@ -1,0 +1,17 @@
+.evaluation
+  .instructor-title-quarter
+    .instructor= @evaluation.human_instructor_name
+    .title-quarter
+      %span.title= @evaluation.human_title
+      |
+      %span.quarter= @evaluation.human_quarter
+  .enrolled
+    %span= @evaluation.surveyed.to_s
+    surveyed out of
+    %span= @evaluation.enrolled.to_s
+    enrolled.
+    %br
+    Reliability:
+    %span= @evaluation.reliability
+    %img{:src => @evaluation.google_charts_reliability_url} 
+  = render :partial => 'scores'

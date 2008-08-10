@@ -1,0 +1,9 @@
+%h1 Listing evaluations
+
+%table#evaluations-list
+  - @evaluations.each do |evaluation|
+    %tr{:class => cycle('even-row','odd-row')}
+      %td= evaluation.human_instructor_name
+      %td= evaluation.human_title
+      %td= evaluation.human_quarter
+      %td= link_to 'Show', evaluation

@@ -49,6 +49,25 @@ class Evaluation < AbstractCourse
     end
   end
   
+  def reliability
+    100.0 * self.surveyed / self.enrolled
+  end
+  
+  def google_charts_reliability_url
+    reliability = self.reliability
+    "http://chart.apis.google.com/chart?chs=150x90&chf=bg,s,c8c8ff&cht=gom&chd=t:#{reliability}&chl=#{reliability}&chco=ff0000,ff6600,ffff00,00ff00"
+  end
+  
+  def google_chart_scores_url(key)
+    scores = self.scores[key][:scores]
+    "http://chart.apis.google.com/chart?" +
+      "cht=bvs&chbh=40,15&chs=380x140&" +
+      "chf=bg,s,ccffbf&chco=6d6dbf&" +
+      "chd=t:#{scores.join(',')}&chds=0,#{scores.max}&" +
+      "chxt=x,y,r,t&chxl=0:|Very Poor|Poor|Fair|Good|Very Good|Excellent|3:|#{scores.join('|')}&" + 
+      "chxr=1,0,#{scores.max}|2,0,#{scores.max}"
+  end
+  
   protected
   def process_name
     self.instructor_name = instructor_name.strip.upcase.split('.').join if instructor_name

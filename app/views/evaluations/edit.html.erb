@@ -1,0 +1,12 @@
+<h1>Editing evaluation</h1>
+
+<% form_for(@evaluation) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @evaluation %> |
+<%= link_to 'Back', evaluations_path %>

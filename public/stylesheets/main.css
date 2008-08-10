@@ -1,0 +1,54 @@
+body {
+  background: #c8c8ff;
+}
+
+#evaluations-list td {
+  padding: 5px;
+}
+
+.header-row {
+  background: #ffbfdc;
+  font-weight: bold;
+}
+
+.odd-row {
+  background: #ffecbf;
+}
+
+.even-row {
+  background: #ccffbf;
+}
+
+.evaluation div {
+  padding: 5px;
+}
+
+.evaluation .instructor {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.evaluation .enrolled {
+}
+
+.evaluation .instructor-title-quarter {
+  font-size: 120%;
+}
+
+.evaluation .enrolled span {
+  border: 1px solid black;
+  color: #fff;
+  background: #6d6dbf;
+}
+
+.scores {
+  text-align: center;
+}
+
+.scores .question {
+  font-weight: bold;
+}
+
+.scores .median {
+  font-weight: bold;
+}

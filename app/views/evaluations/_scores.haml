@@ -1,0 +1,13 @@
+.scores
+  %table
+    %tr.header-row
+      %td Question
+      %td Median
+      %td Bar Plot of Percentages
+    - @evaluation.scores.keys.each do |key|
+      %tr{:class => 'even-row'}
+        %td.question= Evaluation.expand_question(key)
+        %td.median= @evaluation.scores[key][:median]
+        %td.bar-plot
+          %img{:src => @evaluation.google_chart_scores_url(key), :alt => "Scores: #{@evaluation.scores[key][:scores].join(',')}", :title => "Scores: #{@evaluation.scores[key][:scores].join(', ')}"}
+        

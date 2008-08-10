@@ -20,6 +20,8 @@ Sat Aug 09 12:46:16 -0700 2008
 Verified that server starts and runs fine. Declared Course and Evaluation models, and ported the specs over. Changed the specs to not rely on fixture-replacement. Verified that specs pass.
 
 Ported over scraping stuff. Put specs for it in spec/lib and verified pass.
-
+--------------------------------------------------------------------------------
+Sat Aug 09 16:37:07 -0700 2008
+Autotest does not work, fails to load hpricot. Don't know why, proceeding with controller development.
 
 puts "-"*80; puts Time.new
