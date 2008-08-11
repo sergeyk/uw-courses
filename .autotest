@@ -1,0 +1,31 @@
+module Autotest::Growl  
+  GROWLNOTIFY = "/usr/local/safegrowlnotify"   
+  
+  def self.notify title, msg, img, pri=1, sticky=""   
+    commands = ["#{GROWLNOTIFY}  --image #{img} -p #{pri} -m #{msg.inspect} #{title} #{sticky}"]  
+    commands.each { |c| system(c) }  
+  end  
+  
+  Autotest.add_hook :ran_command do |at|  
+    results = [at.results].flatten.join("\n")  
+    # rpsec  
+    output = results.slice(/(\d+)\s+examples?,\s*(\d+)\s+failures?(,\s*(\d+)\s+pending)?/)  
+    if output  
+      if $~[2].to_i > 0  
+        notify "Test Results", "#{output}", "~/Library/autotest/rails_fail.png", 2  
+      else  
+        notify "Test Results", "#{output}", "~/Library/autotest/rails_ok.png"   
+      end  
+    end  
+    # test::unit  
+    output = results.slice(/(\d+)\s+tests?,\s*(\d+)\s+assertions?,\s*(\d+)\s+failures?,\s*(\d+)\s+errors?/)  
+    if output  
+      if (($~[3].to_i > 0) or ($~[4].to_i > 0))  
+        notify "Test Results", "#{output}", "~/Library/autotest/rails_fail.png", 2  
+      else  
+        notify "Test Results", "#{output}", "~/Library/autotest/rails_ok.png"   
+      end  
+    end  
+  end  
+  
+end

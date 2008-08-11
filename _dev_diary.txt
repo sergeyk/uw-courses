@@ -23,5 +23,14 @@ Ported over scraping stuff. Put specs for it in spec/lib and verified pass.
 --------------------------------------------------------------------------------
 Sat Aug 09 16:37:07 -0700 2008
 Autotest does not work, fails to load hpricot. Don't know why, proceeding with controller development.
+--------------------------------------------------------------------------------
+Sun Aug 10 15:15:24 -0700 2008
+Got evaluations controller to be pretty good last night. Today investigated making a departments controller. Reached the conclusion that Department needs to be a database-backed model. Same for Quarter. Will refactor soon, but first going to make an Instructors controller, since that isn't going to be a model, due to the variation in name format. Although I'm coming to realize that I will need an instructor model to standardize formatting.
+--------------------------------------------------------------------------------
+Sun Aug 10 16:14:25 -0700 2008
+Finally got autotest working. Solution: listed 'hpricot' and 'haml' as required gems in environment.rb and gems:unpack'ed them. Now that autotest is running, time for refactoring of model code.
+--------------------------------------------------------------------------------
+Sun Aug 10 21:13:57 -0700 2008
+Made Scores into its own model. Took a while, because the way serialize works is not how I thought it would work: it tries to serialize before any before_validation methods are called. So, I couldn't convert to Scores from Hash before serialize had a problem. After some time, the solution is to cast the incoming data to Scores. Clunky, but I'm tired of this.
 
 puts "-"*80; puts Time.new

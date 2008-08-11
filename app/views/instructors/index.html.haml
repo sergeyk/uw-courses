@@ -1,0 +1,11 @@
+%h1 Listing instructors
+
+%table#instructors-list
+  %tr.header-row
+    %td Instructor Name
+    %td Evaluations on file
+    %td Average 'Course as a Whole' rating
+    %td Average 'Instructor effectiveness' rating
+    - @instructors.each do |instructor|
+      %tr{:class => cycle('even-row','odd-row')}
+        %td= instructor

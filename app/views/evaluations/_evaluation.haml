@@ -14,4 +14,4 @@
     Reliability:
     %span= @evaluation.reliability
     %img{:src => @evaluation.google_charts_reliability_url} 
-  = render :partial => 'scores'
+  = render(:partial => "scores", :object => @evaluation.scores)

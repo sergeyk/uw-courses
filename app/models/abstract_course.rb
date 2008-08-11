@@ -21,7 +21,11 @@ class AbstractCourse < ActiveRecord::Base
   end
   
   def human_title
-    "#{dept} #{number} #{section if section}"
+    "#{dept} #{human_number}"
+  end
+  
+  def human_number
+    "#{number} #{section if section}"
   end
   
   def human_instructor_name

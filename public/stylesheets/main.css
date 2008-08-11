@@ -6,6 +6,10 @@ body {
   padding: 5px;
 }
 
+#departments-list td {
+  padding: 5px;
+}
+
 .header-row {
   background: #ffbfdc;
   font-weight: bold;
@@ -46,9 +50,5 @@ body {
 }
 
 .scores .question {
-  font-weight: bold;
-}
-
-.scores .median {
   font-weight: bold;
 }

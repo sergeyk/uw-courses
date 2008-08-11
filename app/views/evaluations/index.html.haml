@@ -1,0 +1,16 @@
+%h1 Listing evaluations
+
+%table#evaluations-list
+  %tr.header-row
+    %td Instructor Name
+    %td Dept.
+    %td Course
+    %td Quarter
+    %td View
+  - @evaluations.each do |evaluation|
+    %tr{:class => cycle('even-row','odd-row')}
+      %td= evaluation.human_instructor_name
+      %td= link_to "#{evaluation.dept}", departments_path
+      %td= evaluation.human_number
+      %td= evaluation.human_quarter
+      %td= link_to 'Show', evaluation

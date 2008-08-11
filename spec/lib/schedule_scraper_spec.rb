@@ -1,3 +1,4 @@
+require File.dirname(__FILE__) + '/../spec_helper'
 require File.dirname(__FILE__) + '/../../lib/uwscraper/schedules/schedule_scraper.rb'
 
 describe ScheduleScraper do
