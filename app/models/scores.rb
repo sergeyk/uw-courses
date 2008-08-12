@@ -17,7 +17,7 @@ class Scores < Hash
   
   def percentages_add_up?
     total_percentage = self[:content][:scores].inject { |x,y| x + y }
-    (total_percentage <= 101 and total_percentage >= 99)
+    (total_percentage <= 102 and total_percentage >= 98)
   end
   
   def self.expand_question(hash_key_question)

@@ -1,8 +1,8 @@
-%h1 Listing departments
+%h1 Listing all departments
 
 %table#departments-list
   %tr.header-row
     %td Department Abbreviation
     - @departments.each do |department|
       %tr{:class => cycle('even-row','odd-row')}
-        %td= department
+        %td= link_to(department, department_path(department))

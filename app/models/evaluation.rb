@@ -11,7 +11,8 @@ class Evaluation < AbstractCourse
   
   # TODO: is it good style that this mainly validates scores but is a model-wide method?
   def validate
-    return errors.add_on_empty([:scores, :surveyed, :enrolled])  unless scores and surveyed and enrolled
+    return errors.add_on_empty([:scores, :surveyed, :enrolled]) unless scores and surveyed and enrolled
+    return errors.add("Surveyed and enrolled numbers should not be negative") if surveyed < 0 or enrolled < 0
     return errors.add("Scores should have at least :whole, :content, :contribution, :effectiveness") unless scores.all_required_keys_present?
     return errors.add("Percentage values for :content don't add up to 100!") unless scores.percentages_add_up?
   end

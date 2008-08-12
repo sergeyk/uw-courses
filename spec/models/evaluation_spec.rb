@@ -72,6 +72,13 @@ describe Evaluation do
       
       @eval.scores[:content][:scores] = [0,0,0,0,0,100]
       @eval.should be_valid
+      
+      @eval.scores[:content][:scores] = [0, 0, 40, 30, 10, 20]
+      @eval.should be_valid
+      
+      # This is real data, man! Adds up to 98...
+      @eval.scores[:content][:scores] = [0, 3, 3, 17, 34, 41]
+      @eval.should be_valid
     end
     
     it "should not be valid with no or bad scores" do
@@ -97,11 +104,23 @@ describe Evaluation do
       @eval.surveyed = "lol"
       @eval.should_not be_valid
       
+      @eval.surveyed = -1
+      @eval.should_not be_valid
+      
+      @eval.surveyed = 1
+      @eval.should be_valid
+      
       @eval.enrolled = nil
       @eval.should_not be_valid
       
       @eval.enrolled = "lol!"
       @eval.should_not be_valid
+      
+      @eval.enrolled = -1
+      @eval.should_not be_valid
+      
+      @eval.enrolled = 1
+      @eval.should be_valid
     end
   end
 end

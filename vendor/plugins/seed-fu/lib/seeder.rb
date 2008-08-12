@@ -31,7 +31,7 @@ class Seeder
     @data.each do |k, v|
       record.send("#{k}=", v)
     end
-    record.save!
+    record.save! rescue puts "Failed on: #{@data.inspect}"
     puts " - #{@model_class} #{condition_hash.inspect}"
     record
   end

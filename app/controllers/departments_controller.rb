@@ -5,5 +5,6 @@ class DepartmentsController < ApplicationController
   
   def show
     @department = (params[:id])
+    @evaluations = Evaluation.find_all_by_dept(@department, :order => 'instructor_name ASC')
   end
 end
