@@ -1,9 +1,8 @@
 class Course < AbstractCourse
-  # additional functionality in abstract_course.rb
+  acts_as_ferret :fields => [:instructor_name]
 
   before_validation :process_names
   validates_format_of :instructor_last_name, :instructor_first_and_middle_names, :with => self.name_validation_regex, :allow_nil => true
-  acts_as_ferret :fields => [:instructor_last_name, :instructor_first_and_middle_names]
   validates_presence_of :section, :sln
   validates_format_of :sln, :with => /^[0-9][0-9][0-9][0-9][0-9]$/
   validates_uniqueness_of :sln, :scope => :quarter

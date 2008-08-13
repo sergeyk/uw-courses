@@ -91,7 +91,7 @@ describe AbstractCourse do
     end
   end
   
-  describe "searching by name" do
+  describe "searching courses by name" do
     it "should find courses based on different completeness of name" do
       @course1 = Course.create do |c|
         c.quarter = "SPR2008"
@@ -104,6 +104,8 @@ describe AbstractCourse do
         c.instructor_last_name = "LIMKETKAI"
         c.instructor_first_and_middle_names = "BENSON N"
       end
+      
+      @course1.instructor_name.should == "BENSON N LIMKETKAI"
     
       Course.find(:all).size.should == 1
     
@@ -181,6 +183,30 @@ describe AbstractCourse do
     
       ferret_result = Course.find_by_instructor_name("ELLIS")
       ferret_result.size.should == 2
+    end
+  end
+  
+  describe "searching evaluations by name" do
+    it "should find evaluations: sanity check" do
+      @eval1 = Evaluation.create do |e|
+        e.quarter = "SPR2007"
+        e.dept = "CSE"
+        e.number = "142"
+        e.section = "B"
+        e.instructor_name = "Benson N Limketkai"
+        e.course_type = "Form B: Large Lecture"
+        e.surveyed = 81
+        e.enrolled = 225
+        e.scores = Scores.new(:contribution=>{:scores=>[0, 0, 4, 11, 27, 58], :median=>4.64}, :effectiveness=>{:scores=>[0, 0, 5, 12, 25, 58], :median=>4.64}, :content=>{:scores=>[0, 0, 4, 19, 37, 41], :median=>4.25}, :interest=>{:scores=>[1, 0, 3, 17, 42, 37], :median=>4.2}, :learned=>{:scores=>[1, 0, 5, 9, 38, 47], :median=>4.42}, :grading=>{:scores=>[0, 5, 6, 23, 35, 31], :median=>3.94}, :whole=>{:scores=>[0, 0, 5, 21, 28, 46], :median=>4.35})
+      end
+      
+      @eval1.instructor_name.should == "BENSON N LIMKETKAI"
+      
+      Evaluation.find(:all).size.should == 1
+      
+      ferret_result = Evaluation.find_by_instructor_name("BENSON N LIMKETKAI")
+      ferret_result.size.should == 1
+      ferret_result.include?(@eval1).should be_true
     end
   end
 end

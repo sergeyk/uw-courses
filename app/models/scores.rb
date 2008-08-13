@@ -1,5 +1,9 @@
 # Adding validation methods for model and convenience methods for view to a good old Hash
 class Scores < Hash
+  REQUIRED_KEYS = [:whole, :content, :contribution, :effectiveness]
+  ADDITIONAL_KEYS = [:interest, :learned, :grading]
+  ALL_KEYS = REQUIRED_KEYS + ADDITIONAL_KEYS
+  
   # Convert a hash to scores
   def initialize(scores_hash=nil)
     if scores_hash
@@ -11,13 +15,22 @@ class Scores < Hash
   
   # Two validation methods
   def all_required_keys_present?
-    required_keys = [:whole, :content, :contribution, :effectiveness]
-    all_present = (required_keys.map { |x| x = (self[x] != nil) }).inject { |y,z| y and z }
+    all_present = (REQUIRED_KEYS.map { |x| x = (self[x] != nil) }).inject { |y,z| y and z }
   end
   
   def percentages_add_up?
     total_percentage = self[:content][:scores].inject { |x,y| x + y }
     (total_percentage <= 102 and total_percentage >= 98)
+  end
+  
+  def google_charts_url(key)
+    scores = self[key][:scores]
+    "http://chart.apis.google.com/chart?" +
+      "cht=bvs&chbh=40,15&chs=380x140&" +
+      "chf=bg,s,ccffbf&chco=6d6dbf&" +
+      "chd=t:#{scores.join(',')}&chds=0,#{scores.max}&" +
+      "chxt=x,y,r,t&chxl=0:|Very Poor|Poor|Fair|Good|Very Good|Excellent|3:|#{scores.join('|')}&" + 
+      "chxr=1,0,#{scores.max}|2,0,#{scores.max}"
   end
   
   def self.expand_question(hash_key_question)
@@ -39,15 +52,5 @@ class Scores < Hash
     else
       return hash_key_question.to_s
     end
-  end
-  
-  def google_charts_url(key)
-    scores = self[key][:scores]
-    "http://chart.apis.google.com/chart?" +
-      "cht=bvs&chbh=40,15&chs=380x140&" +
-      "chf=bg,s,ccffbf&chco=6d6dbf&" +
-      "chd=t:#{scores.join(',')}&chds=0,#{scores.max}&" +
-      "chxt=x,y,r,t&chxl=0:|Very Poor|Poor|Fair|Good|Very Good|Excellent|3:|#{scores.join('|')}&" + 
-      "chxr=1,0,#{scores.max}|2,0,#{scores.max}"
   end
 end

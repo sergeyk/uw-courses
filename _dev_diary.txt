@@ -37,6 +37,11 @@ Also, autotest now growl-notifies. Got working following the tutorial at http://
 --------------------------------------------------------------------------------
 Tue Aug 12 01:10:51 -0700 2008
 Discovered something disconcerting: in evals_uptospring08_1 file, there are at least two ITAL 134 B in SUM2007. That's a big problem, because those 4 attributes are the constraints on my seed-fu seeding. I guess instructor name should also be a constraint. Shit, it'll take some processing to adjust these big files. For now, I'm seeding the first file as is. Also, a lot of evals are failing because of bad section ('02') or not enough eval information. I modified the seed-fu code to not stop rake on failed model save!'s. I'm going to try and put some controller work in before going to bed.
+--------------------------------------------------------------------------------
+Wed Aug 13 02:03:00 -0700 2008
+Man, before doing anything else tomorrow, got to write specs for the Scores and Instructor classes!
+--------------------------------------------------------------------------------
+Wed Aug 13 03:33:06 -0700 2008
+Actually, never mind, wrote most of the spec for Instructor, and Scores doesn't need much at all. Finish up the Instructor one, and then work on controllers tomorrow.
+
 puts "-"*80; puts Time.new
-
-
