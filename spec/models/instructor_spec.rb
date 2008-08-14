@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Instructor do
-  describe "With all evaluations having all seven keys" do
+  describe "with all evaluations having all seven keys" do
     before(:each) do
       @eval1 = Evaluation.create do |e|
         e.quarter = "SPR2007"
@@ -56,24 +56,22 @@ describe Instructor do
     end
   
     it "should calculate the correct instructor-specific rating average" do
-    end
-  
-    it "should calculate the correct course-specific rating average" do
+      @instructor.average_instructor_specific_rating.should == 4.39
     end
   end
   
-  describe "With one eval missing some keys" do
+  describe "with one of two evals missing some keys" do
     before(:each) do
       @eval1 = Evaluation.create do |e|
-        e.quarter = "AUT2007"
-        e.dept = "EE"
-        e.number = "299"
-        e.section = "B"
-        e.instructor_name = "Howard Chizeck"
-        e.course_type = "Form K: Project"
-        e.surveyed = 22
-        e.enrolled = 25
-        e.scores = Scores.new(:contribution=>{:scores=>[0, 0, 0, 5, 14, 82], :median=>4.89}, :effectiveness=>{:scores=>[0, 0, 0, 0, 45, 55], :median=>4.58}, :content=>{:scores=>[0, 0, 0, 9, 64, 27], :median=>4.14}, :whole=>{:scores=>[0, 0, 0, 0, 55, 45], :median=>4.42})
+        e.quarter = "WIN2008"
+        e.dept = "E E"
+        e.number = "581"
+        e.section = "A"
+        e.instructor_name = "Howard Jay Chizeck"
+        e.course_type = "Form D: Problem Solving"
+        e.surveyed = 6
+        e.enrolled = 14
+        e.scores = Scores.new(:contribution=>{:scores=>[0, 0, 33, 33, 0, 33], :median=>3.0}, :effectiveness=>{:scores=>[0, 0, 17, 50, 0, 33], :median=>3.17}, :content=>{:scores=>[0, 0, 17, 33, 17, 33], :median=>3.5}, :interest=>{:scores=>[0, 17, 0, 33, 33, 17], :median=>3.5}, :learned=>{:scores=>[0, 17, 17, 33, 0, 33], :median=>3.0}, :grading=>{:scores=>[0, 17, 33, 33, 17, 0], :median=>2.5}, :whole=>{:scores=>[0, 0, 0, 50, 17, 33], :median=>3.5})
       end
       @eval2 = Evaluation.create do |e|
         e.quarter = "SPR2007"
@@ -86,10 +84,69 @@ describe Instructor do
         e.enrolled = 24
         e.scores = Scores.new(:contribution=>{:scores=>[0, 0, 5, 21, 37, 37], :median=>4.14}, :effectiveness=>{:scores=>[0, 0, 11, 21, 42, 26], :median=>3.94}, :content=>{:scores=>[0, 0, 5, 16, 47, 32], :median=>4.11}, :whole=>{:scores=>[0, 0, 5, 10, 60, 25], :median=>4.08})
       end
+      @instructor = Instructor.new("Howard Jay Chizeck")
     end
     
-    it "should description" do
-      
+    it "should calculate the correct overall rating average" do
+      @instructor.average_overall_rating.should == 3.62
+    end
+    
+    it "should calculate the correct instructor-specific rating average" do
+      @instructor.average_instructor_specific_rating.should == 3.63
+    end
+  
+    it "should calculate the correct course-specific rating average" do
+      @instructor.average_course_specific_rating.should == 3.71
+    end
+    
+    it "should calculate the correct grading rating average" do
+      @instructor.average_grading_rating.should == 2.5
+    end
+  end
+  
+  describe "with only one eval that's missing some keys" do
+    before(:each) do
+      @eval1 = Evaluation.create do |e|
+        e.quarter = "SPR2007"
+        e.dept = "E E"
+        e.number = "449"
+        e.section = "A"
+        e.instructor_name = "Howard Jay Chizeck"
+        e.course_type = "Form K: Project"
+        e.surveyed = 20
+        e.enrolled = 24
+        e.scores = Scores.new(:contribution=>{:scores=>[0, 0, 5, 21, 37, 37], :median=>4.14}, :effectiveness=>{:scores=>[0, 0, 11, 21, 42, 26], :median=>3.94}, :content=>{:scores=>[0, 0, 5, 16, 47, 32], :median=>4.11}, :whole=>{:scores=>[0, 0, 5, 10, 60, 25], :median=>4.08})
+      end
+      @instructor = Instructor.new("Howard Jay Chizeck")
+    end
+    
+    it "should calculate the correct overall rating average" do
+      @instructor.average_overall_rating.should == 4.07
+    end
+    
+    it "should calculate the correct instructor-specific rating average" do
+      @instructor.average_instructor_specific_rating.should == 4.04
+    end
+  
+    it "should calculate the correct course-specific rating average" do
+      @instructor.average_course_specific_rating.should == 4.10
+    end
+    
+    it "should return nil for the grading rating average" do
+      @instructor.average_grading_rating.should == nil
+    end
+  end
+  
+  describe "with no evals" do
+    before(:each) do
+      @instructor = Instructor.new("Howard Jay Chizeck")
+    end
+    
+    it "should return nil for every rating" do
+      @instructor.average_overall_rating.should == nil
+      @instructor.average_instructor_specific_rating.should == nil
+      @instructor.average_course_specific_rating.should == nil
+      @instructor.average_grading_rating.should == nil
     end
   end
 end

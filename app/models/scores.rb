@@ -2,7 +2,11 @@
 class Scores < Hash
   REQUIRED_KEYS = [:whole, :content, :contribution, :effectiveness]
   ADDITIONAL_KEYS = [:interest, :learned, :grading]
+  
   ALL_KEYS = REQUIRED_KEYS + ADDITIONAL_KEYS
+  INSTRUCTOR_KEYS = [:contribution, :effectiveness, :interest]
+  COURSE_KEYS = [:whole, :content, :learned]
+  GRADING = [:grading]
   
   # Convert a hash to scores
   def initialize(scores_hash=nil)
@@ -11,6 +15,10 @@ class Scores < Hash
         self[k] = v
       end
     end
+  end
+  
+  def averages
+    @averages ||= compute_averages
   end
   
   # Two validation methods
@@ -52,5 +60,19 @@ class Scores < Hash
     else
       return hash_key_question.to_s
     end
+  end
+  
+  private
+  def compute_averages
+    averages = {}
+    [ALL_KEYS, INSTRUCTOR_KEYS, COURSE_KEYS, GRADING].each do |key_set|
+      medians = []
+      key_set.each do |key|
+        medians << self[key][:median] if self[key]
+      end
+      average = medians.inject { |x,y| x + y } / (1.0 * medians.size) if medians.size > 0
+      averages[key_set] = average if average
+    end
+    averages
   end
 end

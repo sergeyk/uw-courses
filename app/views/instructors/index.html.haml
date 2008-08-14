@@ -3,9 +3,17 @@
 %table#instructors-list
   %tr.header-row
     %td Instructor Name
-    %td Evaluations on file
-    %td Average 'Course as a Whole' rating
-    %td Average 'Instructor effectiveness' rating
+    %td Number of evaluations on file
+    %td Average overall rating
+    %td Average instructor-specific rating
+    %td Average course-specific rating
+    %td Average grading rating
     - @instructors.each do |instructor|
+      - instructor = Instructor.new(instructor)
       %tr{:class => cycle('even-row','odd-row')}
-        %td= instructor
+        %td= instructor.human_name
+        %td= instructor.evaluations.size
+        %td= instructor.average_overall_rating or "--"
+        %td= instructor.average_instructor_specific_rating or "--"
+        %td= instructor.average_course_specific_rating or "--"
+        %td= instructor.average_grading_rating or "--"

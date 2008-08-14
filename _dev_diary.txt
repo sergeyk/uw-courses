@@ -43,5 +43,9 @@ Man, before doing anything else tomorrow, got to write specs for the Scores and 
 --------------------------------------------------------------------------------
 Wed Aug 13 03:33:06 -0700 2008
 Actually, never mind, wrote most of the spec for Instructor, and Scores doesn't need much at all. Finish up the Instructor one, and then work on controllers tomorrow.
-
+--------------------------------------------------------------------------------
+Thu Aug 14 02:33:08 -0700 2008
+It took a good hour and a half, but Instructor is fully spec'd out. Refactored averages computation in the process. Also worked a little on the controller. NEED to implement will_paginate and search soon: horrendously slow.
 puts "-"*80; puts Time.new
+
+
