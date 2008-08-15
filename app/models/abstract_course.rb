@@ -28,19 +28,20 @@ class AbstractCourse < ActiveRecord::Base
     "#{number} #{section if section}"
   end
   
+  # TODO: spec out if not already
   def human_instructor_name
-    "#{instructor_name.downcase.split.map { |x| x.capitalize }.join(' ')}"
+    Instructor.new(instructor_name).human_name
   end
   
   # expose find_with_ferret through this dynamic-looking find
   # one trick: if no results, try searching just for the first and last words
   # of the name. This is to handle the case of the abbreviated middle name
-  def self.find_by_instructor_name(name)
+  def self.find_by_instructor_name(name, options = {})
     name = name.strip.upcase.split('.').join
     results = self.find_with_ferret(name)
     if results.empty?
       split_name = name.split(' ')
-      results = self.find_with_ferret("#{split_name[0]} #{split_name[-1]}")
+      results = self.find_with_ferret("#{split_name[0]} #{split_name[-1]}", options)
     end
     results
   end

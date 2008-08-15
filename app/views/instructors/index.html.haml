@@ -11,7 +11,7 @@
     - @instructors.each do |instructor|
       - instructor = Instructor.new(instructor)
       %tr{:class => cycle('even-row','odd-row')}
-        %td= instructor.human_name
+        %td= link_to instructor.human_name, instructor_path(instructor.name)
         %td= instructor.evaluations.size
         %td= instructor.average_overall_rating or "--"
         %td= instructor.average_instructor_specific_rating or "--"

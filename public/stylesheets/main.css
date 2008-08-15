@@ -1,6 +1,21 @@
 body {
   background: #c8c8ff;
+  color: #333;
 }
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+h1,h2,h3 {
+  font-family: arial, helvetica, sans-serif;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
 
 #evaluations-list td {
   padding: 5px;
@@ -10,18 +25,24 @@ body {
   padding: 5px;
 }
 
+table {
+  background: #888;
+  border: 1px solid #000;
+}
+
 .header-row {
   background: #ffbfdc;
   font-weight: bold;
+}
+
+.even-row {
+  background: #ccffbf;
 }
 
 .odd-row {
   background: #ffecbf;
 }
 
-.even-row {
-  background: #ccffbf;
-}
 
 .evaluation div {
   padding: 5px;
@@ -30,9 +51,6 @@ body {
 .evaluation .instructor {
   font-weight: bold;
   font-size: 120%;
-}
-
-.evaluation .enrolled {
 }
 
 .evaluation .instructor-title-quarter {

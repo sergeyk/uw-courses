@@ -1,3 +1,14 @@
-%h1= "Listing all evaluations for #{@department}"
+%h1= "#{@department} Statistics"
 
-= render(:partial => 'evaluations/evaluations')
+%table
+  %tr.even-row
+    %td Number of evaluations on file:
+    %td
+  %tr.odd-row
+    %td Overall rating:
+    %td
+  %tr
+    %td Instructor-specific rating:
+    %td
+
+= link_to "See all evaluations for this department", department_evaluations_path(@department)

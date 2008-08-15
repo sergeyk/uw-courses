@@ -17,6 +17,11 @@ class Evaluation < AbstractCourse
     return errors.add("Percentage values for :content don't add up to 100!") unless scores.percentages_add_up?
   end
   
+  # TODO: spec out
+  def overall_rating
+    self.scores.averages[Scores::ALL_KEYS].round_to(2)
+  end
+  
   # TODO: a more complex formula for reliability would take into account the number of people enrolled.
   def reliability
     100.0 * self.surveyed / self.enrolled

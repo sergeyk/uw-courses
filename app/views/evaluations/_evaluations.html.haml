@@ -1,13 +1,14 @@
 %table#evaluations-list
   %tr.header-row
     %td Instructor Name
-    %td Dept.
     %td Course
     %td Quarter
+    %td Overall rating
     %td View
   - @evaluations.each do |evaluation|
     %tr{:class => cycle('even-row','odd-row')}
-      %td= evaluation.human_instructor_name
+      %td= link_to evaluation.human_instructor_name, instructor_path(evaluation.instructor_name)
       %td= "#{link_to("#{evaluation.dept}", department_path(evaluation.dept))} #{evaluation.human_number}"
       %td= evaluation.human_quarter
+      %td= evaluation.overall_rating
       %td= link_to 'Show', evaluation

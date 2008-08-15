@@ -5,6 +5,6 @@ class InstructorsController < ApplicationController
   
   def show
     @instructor = Instructor.new(params[:id])
-    @evaluations = @instructor.find_all_evaluations
+    # statistics and stuff
   end
 end

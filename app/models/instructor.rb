@@ -40,10 +40,8 @@ class Instructor
       averages << evaluation.scores.averages[key_set] if evaluation.scores.averages[key_set]
     end
     if averages.size > 0
-      average = averages.inject { |x,y| x+y } / (1.0 * averages.size)
-    else
-      return nil
+      return (averages.inject { |x,y| x+y } / (1.0 * averages.size)).round_to(2)
     end
-    (average * 100).round.to_f / 100
+    nil
   end
 end

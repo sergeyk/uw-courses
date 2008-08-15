@@ -1,6 +1,6 @@
 .evaluation
   .instructor-title-quarter
-    .instructor= @evaluation.human_instructor_name
+    .instructor= link_to @evaluation.human_instructor_name, instructor_path(@evaluation.human_instructor_name)
     .title-quarter
       %span.title= @evaluation.human_title
       |

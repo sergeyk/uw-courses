@@ -46,6 +46,7 @@ Actually, never mind, wrote most of the spec for Instructor, and Scores doesn't 
 --------------------------------------------------------------------------------
 Thu Aug 14 02:33:08 -0700 2008
 It took a good hour and a half, but Instructor is fully spec'd out. Refactored averages computation in the process. Also worked a little on the controller. NEED to implement will_paginate and search soon: horrendously slow.
+--------------------------------------------------------------------------------
+Fri Aug 15 01:43:18 -0700 2008
+Put in some work on the controllers. Changed find_by_instructor_name method to accept standard find() options hash. Should probably spec a little bit, although it's part of the acts_as_ferret functionality. Also look at TODOs in Evaluation and AbstractCourse to spec, and also consider refactoring Instructor: add rating methods to Evaluation.
 puts "-"*80; puts Time.new
-
-
