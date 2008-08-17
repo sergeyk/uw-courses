@@ -1,6 +1,15 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Instructor do
+  describe "individual properties" do
+    it "should generate valid human-readable name" do
+      @instructor = Instructor.new("ADRIAN O O'LOGHLEN")
+      @instructor.human_name.should == "Adrian O O'Loghlen"
+      @instructor = Instructor.new("MACMANUS ROBERTS-JONES, IV")
+      @instructor.human_name.should == "Macmanus Roberts-Jones, Iv"
+    end
+  end
+  
   describe "with all evaluations having all seven keys" do
     before(:each) do
       @eval1 = Evaluation.create do |e|

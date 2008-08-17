@@ -9,7 +9,8 @@ class Evaluation < AbstractCourse
   validates_format_of :instructor_name, :with => self.name_validation_regex, :allow_nil => true
   validates_format_of :section, :with => /^[A-Z][A-Z]?$/, :allow_nil => true
   
-  # TODO: is it good style that this mainly validates scores but is a model-wide method?
+  # NOTE: it may seem better style to separate these out into own methods, but it was more trouble
+  # than it's worth.
   def validate
     return errors.add_on_empty([:scores, :surveyed, :enrolled]) unless scores and surveyed and enrolled
     return errors.add("Surveyed and enrolled numbers should not be negative") if surveyed < 0 or enrolled < 0
@@ -32,6 +33,19 @@ class Evaluation < AbstractCourse
     "http://chart.apis.google.com/chart?cht=gom&chs=150x90&" +
       "chf=bg,s,c8c8ff&chco=ff0000,ff6600,ffff00,00ff00&" + 
       "chd=t:#{reliability}&chl=#{reliability}"
+  end
+  
+  # Returns the average rating for the given evaluations and keys rounded to two
+  # decimal points, or nil if no average rating for the given keys
+  def self.average_rating(evaluations, key_set)
+    averages = []
+    evaluations.each do |evaluation|
+      averages << evaluation.scores.averages[key_set] if evaluation.scores.averages[key_set]
+    end
+    if averages.size > 0
+      return (averages.inject { |x,y| x+y } / (1.0 * averages.size)).round_to(2)
+    end
+    nil
   end
   
   protected

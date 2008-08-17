@@ -1,14 +1,15 @@
-%table#evaluations-list
-  %tr.header-row
-    %td Instructor Name
-    %td Course
-    %td Quarter
-    %td Overall rating
-    %td View
-  - @evaluations.each do |evaluation|
-    %tr{:class => cycle('even-row','odd-row')}
-      %td= link_to evaluation.human_instructor_name, instructor_path(evaluation.instructor_name)
-      %td= "#{link_to("#{evaluation.dept}", department_path(evaluation.dept))} #{evaluation.human_number}"
-      %td= evaluation.human_quarter
-      %td= evaluation.overall_rating
-      %td= link_to 'Show', evaluation
+#evaluations-list
+  %table
+    %tr.header-row
+      %td Instructor Name
+      %td Course
+      %td Quarter
+      %td Overall rating
+      %td View
+    - @evaluations.each do |evaluation|
+      %tr{:class => cycle('even-row','odd-row')}
+        %td= link_to evaluation.human_instructor_name, instructor_path(evaluation.instructor_name)
+        %td= "#{link_to("#{evaluation.dept}", department_path(evaluation.dept))} #{evaluation.human_number}"
+        %td= evaluation.human_quarter
+        %td= evaluation.overall_rating
+        %td= link_to 'Show', evaluation

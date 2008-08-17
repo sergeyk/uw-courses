@@ -3,8 +3,10 @@ class EvaluationsController < ApplicationController
   # GET /evaluations.xml
   def index
     if params[:department_id]
+      @parent_name = params[:department_id]
       @evaluations = Evaluation.find_all_by_dept(params[:department_id], :order => "dept, instructor_name ASC")
     elsif params[:instructor_id]
+      @parent_name = params[:instructor_id]
       @evaluations = Evaluation.find_by_instructor_name(params[:instructor_id], :order => "instructor_name, dept ASC")
     else
       @evaluations = Evaluation.find(:all, :order => "dept, instructor_name ASC")

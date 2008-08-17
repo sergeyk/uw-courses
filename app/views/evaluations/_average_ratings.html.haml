@@ -1,0 +1,17 @@
+#average-ratings
+  %table.average_ratings
+    %tr.odd-row
+      %td Number of evaluations on file:
+      %td= @num_evaluations
+    %tr.even-row
+      %td Average overall rating:
+      %td= @average_overall_rating
+    %tr.odd-row
+      %td Average instructor-specific rating:
+      %td= @average_instructor_specific_rating
+    %tr.even-row
+      %td Average course-specific rating:
+      %td= @average_course_specific_rating
+    %tr.odd-row
+      %td Average grading rating:
+      %td= @average_grading_rating

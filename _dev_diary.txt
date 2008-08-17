@@ -49,4 +49,8 @@ It took a good hour and a half, but Instructor is fully spec'd out. Refactored a
 --------------------------------------------------------------------------------
 Fri Aug 15 01:43:18 -0700 2008
 Put in some work on the controllers. Changed find_by_instructor_name method to accept standard find() options hash. Should probably spec a little bit, although it's part of the acts_as_ferret functionality. Also look at TODOs in Evaluation and AbstractCourse to spec, and also consider refactoring Instructor: add rating methods to Evaluation.
+--------------------------------------------------------------------------------
+Sat Aug 16 14:44:35 -0700 2008
+TODO: refactor specs for Instructor class: average ratings things should be spec'd in separate file, as that is shared functionality.
+
 puts "-"*80; puts Time.new

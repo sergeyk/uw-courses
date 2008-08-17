@@ -17,6 +17,14 @@ a { color: #000; }
 a:visited { color: #666; }
 a:hover { color: #fff; background-color:#000; }
 
+#average-ratings {
+  padding: 5px;
+}
+
+#evaluations-list {
+  padding: 5px;
+}
+
 #evaluations-list td {
   padding: 5px;
 }
@@ -33,6 +41,7 @@ table {
 .header-row {
   background: #ffbfdc;
   font-weight: bold;
+  text-align: center;
 }
 
 .even-row {

@@ -1,3 +1,5 @@
-%h1 Listing all evaluations
+%h1
+  Listing all evaluations
+  = "for #{@parent_name}" if @parent_name
 
 = render(:partial => 'evaluations')

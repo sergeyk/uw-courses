@@ -1,17 +1,5 @@
-%h1= @instructor.name
+%h1= @instructor_name
 
-%table.average_ratings
-  %tr.even-row
-    %td Average overall rating:
-    %td= @instructor.average_overall_rating
-  %tr.odd-row
-    %td Average instructor-specific rating:
-    %td= @instructor.average_instructor_specific_rating
-  %tr.even-row
-    %td Average course-specific rating:
-    %td= @instructor.average_course_specific_rating
-  %tr.odd-row
-    %td Average grading rating:
-    %td= @instructor.average_grading_rating
+= render :partial => "evaluations/average_ratings"
 
-= link_to "See all evaluations for this instructor", instructor_evaluations_path(@instructor.name)
+= link_to "See all evaluations for this instructor", instructor_evaluations_path(@instructor_name)

@@ -4,7 +4,13 @@ class InstructorsController < ApplicationController
   end
   
   def show
-    @instructor = Instructor.new(params[:id])
-    # statistics and stuff
+    instructor = Instructor.new(params[:id])
+    
+    @instructor_name = instructor.name
+    @num_evaluations = instructor.evaluations.size
+    @average_overall_rating = instructor.average_overall_rating
+    @average_instructor_specific_rating = instructor.average_instructor_specific_rating
+    @average_course_specific_rating = instructor.average_course_specific_rating
+    @average_grading_rating = instructor.average_grading_rating
   end
 end
