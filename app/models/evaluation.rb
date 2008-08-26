@@ -20,7 +20,19 @@ class Evaluation < AbstractCourse
   
   # TODO: spec out
   def overall_rating
-    self.scores.averages[Scores::ALL_KEYS].round_to(2)
+    round_rating self.scores.averages[Scores::ALL_KEYS]
+  end
+  
+  def instructor_specific_rating
+    round_rating self.scores.averages[Scores::INSTRUCTOR_KEYS]
+  end
+  
+  def course_specific_rating
+    round_rating self.scores.averages[Scores::COURSE_KEYS]
+  end
+  
+  def grading_rating
+    round_rating self.scores.averages[Scores::GRADING]
   end
   
   # TODO: a more complex formula for reliability would take into account the number of people enrolled.
@@ -51,5 +63,10 @@ class Evaluation < AbstractCourse
   protected
   def process_name
     self.instructor_name = instructor_name.strip.upcase.split('.').join if instructor_name
+  end
+  
+  def round_rating(rating)
+    return nil unless rating
+    rating.round_to(2)
   end
 end

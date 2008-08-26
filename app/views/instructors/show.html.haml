@@ -2,4 +2,6 @@
 
 = render :partial => "evaluations/average_ratings"
 
-= link_to "See all evaluations for this instructor", instructor_evaluations_path(@instructor_name)
+= render :partial => "evaluations/evaluations", :object => @evaluations
+
+= link_to "Back to all instructors", instructors_path

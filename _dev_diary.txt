@@ -52,5 +52,7 @@ Put in some work on the controllers. Changed find_by_instructor_name method to a
 --------------------------------------------------------------------------------
 Sat Aug 16 14:44:35 -0700 2008
 TODO: refactor specs for Instructor class: average ratings things should be spec'd in separate file, as that is shared functionality.
-
+--------------------------------------------------------------------------------
+Tue Aug 26 03:37:56 -0700 2008
+Put in some work on the view side, but didn't do the TODO above. Enabling caching makes everything hella fast.
 puts "-"*80; puts Time.new
