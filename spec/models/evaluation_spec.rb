@@ -5,7 +5,7 @@ describe Evaluation do
     before(:each) do
       @eval = Evaluation.create do |e|
         e.quarter = "AUT2007"
-        e.dept = "ECON"
+        e.dept_abbrev = "ECON"
         e.number = "200"
         e.section = "C"
         e.instructor_name = "Gregory M Ellis"

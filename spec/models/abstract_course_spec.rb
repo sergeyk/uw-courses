@@ -8,7 +8,7 @@ describe AbstractCourse do
       @course = Course.create do |c|
         c.quarter = "SPR2008"
         c.sln = "11912"
-        c.dept = "CSE"
+        c.dept_abbrev = "CSE"
         c.number = "142"
         c.section = "A"
         c.title = "COMPUTER PRGRMNG I"
@@ -39,24 +39,24 @@ describe AbstractCourse do
 
     # TODO: should match against a list of department abbreviations here
     it "should not be valid if bad or no dept abbreviation" do
-      @course.dept = nil
+      @course.dept_abbrev = nil
       @course.should_not be_valid
-      @course.dept = ""
+      @course.dept_abbrev = ""
       @course.should_not be_valid
-      @course.dept = " "
+      @course.dept_abbrev = " "
       @course.should_not be_valid
-      @course.dept = "1Hj0"
+      @course.dept_abbrev = "1Hj0"
       @course.should_not be_valid
-      @course.dept = "1SE"
+      @course.dept_abbrev = "1SE"
       @course.should_not be_valid
     end
 
     it "should be valid on good dept abbreviations" do
-      @course.dept = "N&MES"
+      @course.dept_abbrev = "N&MES"
       @course.should be_valid
-      @course.dept = "ART H"
+      @course.dept_abbrev = "ART H"
       @course.should be_valid
-      @course.dept = "A A"
+      @course.dept_abbrev = "A A"
       @course.should be_valid
     end
   
@@ -84,7 +84,7 @@ describe AbstractCourse do
   
     it "should return correct human-readable title" do
       @course.human_title.should == "CSE 142 A"
-      @course.dept = "CHEM"
+      @course.dept_abbrev = "CHEM"
       @course.number = "155"
       @course.section = "AB"
       @course.human_title.should == "CHEM 155 AB"
@@ -96,7 +96,7 @@ describe AbstractCourse do
       @course1 = Course.create do |c|
         c.quarter = "SPR2008"
         c.sln = "11912"
-        c.dept = "CSE"
+        c.dept_abbrev = "CSE"
         c.number = "142"
         c.section = "A"
         c.title = "COMPUTER PRGRMNG I"
@@ -150,7 +150,7 @@ describe AbstractCourse do
       @course2 = Course.create do |c|
         c.quarter = "SPR2008"
         c.sln = "12424"
-        c.dept = "ECON"
+        c.dept_abbrev = "ECON"
         c.number = "482"
         c.section = "A"
         c.title = "ECONOMETRIC METHODS"
@@ -162,7 +162,7 @@ describe AbstractCourse do
       @course3 = Course.create do |c|
         c.quarter = "SPR2008"
         c.sln = "13428"
-        c.dept = "GEOG"
+        c.dept_abbrev = "GEOG"
         c.number = "208"
         c.section = "A"
         c.title = "GEOG WORLD ECONOMY"
@@ -190,7 +190,7 @@ describe AbstractCourse do
     it "should find evaluations: sanity check" do
       @eval1 = Evaluation.create do |e|
         e.quarter = "SPR2007"
-        e.dept = "CSE"
+        e.dept_abbrev = "CSE"
         e.number = "142"
         e.section = "B"
         e.instructor_name = "Benson N Limketkai"

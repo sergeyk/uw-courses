@@ -1,7 +1,7 @@
 class Department
   include AverageRatingsModule
   
-  ALL_DEPARTMENTS = Evaluation.find(:all, :select => 'dept', :group => 'dept', :order => 'dept ASC').map { |x| x.dept }
+  ALL_DEPARTMENTS = Evaluation.find(:all, :select => 'dept_abbrev', :group => 'dept_abbrev', :order => 'dept_abbrev ASC').map { |x| x.dept_abbrev }
   
   attr_reader :abbrev
 
@@ -10,6 +10,10 @@ class Department
   end
   
   def evaluations
-    @evaluations ||= Evaluation.find_all_by_dept(@abbrev)
+    @evaluations ||= Evaluation.find_all_by_dept_abbrev(@abbrev)
+  end
+  
+  def to_param
+    hyphenate_param.call(abbrev)
   end
 end

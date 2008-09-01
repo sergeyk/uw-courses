@@ -2,7 +2,7 @@ class Models < ActiveRecord::Migration
   def self.up
     create_table :evaluations do |t|
       t.string :quarter
-      t.string :dept
+      t.string :dept_abbrev
       t.string :number
       t.string :section
       t.string :course_type
@@ -15,7 +15,7 @@ class Models < ActiveRecord::Migration
     
     create_table :courses do |t|
       t.string :quarter
-      t.string :dept
+      t.string :dept_abbrev
       t.string :number
       t.string :section
       t.string :sln

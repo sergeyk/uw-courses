@@ -6,7 +6,7 @@ describe Course do
       @course = Course.create do |c|
         c.quarter = "SPR2008"
         c.sln = "11912"
-        c.dept = "CSE"
+        c.dept_abbrev = "CSE"
         c.number = "142"
         c.section = "A"
         c.title = "COMPUTER PRGRMNG I"
@@ -145,7 +145,7 @@ describe Course do
       @course2 = Course.new do |c|
         c.quarter = "SPR2008"
         c.sln = "11912"
-        c.dept = "CSE"
+        c.dept_abbrev = "CSE"
         c.number = "142"
         c.section = "A"
         c.title = "COMPUTER PRGRMNG I"
@@ -163,7 +163,7 @@ describe Course do
       @course2 = Course.new do |c|
         c.quarter = "SPR2008"
         c.sln = "11912"
-        c.dept = "CSE"
+        c.dept_abbrev = "CSE"
         c.number = "142"
         c.section = "A"
         c.title = "COMPUTER PRGRMNG I"

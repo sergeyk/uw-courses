@@ -15,8 +15,8 @@
       %tr{:class => cycle('even-row','odd-row')}
         %td
           = evaluation.human_instructor_name
-          = " (#{link_to "see all", instructor_path(evaluation.instructor_name)})"
-        %td= "#{link_to("#{evaluation.dept}", department_path(evaluation.dept))} #{evaluation.human_number}"
+          = " (#{link_to "see all", instructor_path(evaluation.instructor)})"
+        %td= "#{link_to("#{evaluation.dept_abbrev}", department_path(evaluation.dept_abbrev))} #{evaluation.human_number}"
         %td= evaluation.human_quarter
         %td= evaluation.overall_rating
         %td= evaluation.instructor_specific_rating

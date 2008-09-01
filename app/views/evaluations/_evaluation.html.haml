@@ -6,12 +6,12 @@
       |
       %span.quarter= @evaluation.human_quarter
   .enrolled
-    %span= @evaluation.surveyed.to_s
+    %span.number_box= @evaluation.surveyed.to_s
     surveyed out of
-    %span= @evaluation.enrolled.to_s
+    %span.number_box= @evaluation.enrolled.to_s
     enrolled.
-    %br
+  .reliability
     Reliability:
-    %span= @evaluation.reliability
-    %img{:src => @evaluation.google_charts_reliability_url} 
+    %span.number_box= "#{@evaluation.reliability}%"
+    
   = render(:partial => "scores", :object => @evaluation.scores)

@@ -37,14 +37,7 @@ class Evaluation < AbstractCourse
   
   # TODO: a more complex formula for reliability would take into account the number of people enrolled.
   def reliability
-    100.0 * self.surveyed / self.enrolled
-  end
-  
-  def google_charts_reliability_url
-    reliability = self.reliability
-    "http://chart.apis.google.com/chart?cht=gom&chs=150x90&" +
-      "chf=bg,s,c8c8ff&chco=ff0000,ff6600,ffff00,00ff00&" + 
-      "chd=t:#{reliability}&chl=#{reliability}"
+    (100.0 * self.surveyed / self.enrolled).round_to(0).to_i
   end
   
   # Returns the average rating for the given evaluations and keys rounded to two
@@ -61,6 +54,7 @@ class Evaluation < AbstractCourse
   end
   
   protected
+  # Store name in all caps, without periods
   def process_name
     self.instructor_name = instructor_name.strip.upcase.split('.').join if instructor_name
   end

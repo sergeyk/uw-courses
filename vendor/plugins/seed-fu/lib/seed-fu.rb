@@ -35,7 +35,8 @@ module SeedFu
       @data.each do |k, v|
         record.send("#{k}=", v)
       end
-      record.save!
+      record.save! rescue return puts " ! Saving this record failed "
+      puts " - #{@model_class} #{condition_hash.inspect}"      
       record
     end
 
@@ -66,21 +67,23 @@ module SeedFu
 end
 
 
-# Creates a single record of seed data for use
-# with the db:seed rake task. 
-# 
-# === Parameters
-# constraints :: Immutable reference attributes. Defaults to :id
-def self.seed(*constraints, &block)
-  Seeder.plant(self, *constraints, &block)
-end
+class ActiveRecord::Base
+  # Creates a single record of seed data for use
+  # with the db:seed rake task. 
+  # 
+  # === Parameters
+  # constraints :: Immutable reference attributes. Defaults to :id
+  def self.seed(*constraints, &block)
+    SeedFu::Seeder.plant(self, *constraints, &block)
+  end
 
-def self.seed_many(*constraints)
-  seeds = constraints.pop
-  seeds.each do |seed_data|
-    seed(*constraints) do |s|
-      seed_data.each_pair do |k,v|
-        s.send "#{k}=", v
+  def self.seed_many(*constraints)
+    seeds = constraints.pop
+    seeds.each do |seed_data|
+      seed(*constraints) do |s|
+        seed_data.each_pair do |k,v|
+          s.send "#{k}=", v
+        end
       end
     end
   end

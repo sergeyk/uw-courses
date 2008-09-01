@@ -13,7 +13,7 @@ ActiveRecord::Schema.define(:version => 20080809194844) do
 
   create_table "courses", :force => true do |t|
     t.string   "quarter"
-    t.string   "dept"
+    t.string   "dept_abbrev"
     t.string   "number"
     t.string   "section"
     t.string   "sln"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20080809194844) do
 
   create_table "evaluations", :force => true do |t|
     t.string   "quarter"
-    t.string   "dept"
+    t.string   "dept_abbrev"
     t.string   "number"
     t.string   "section"
     t.string   "course_type"

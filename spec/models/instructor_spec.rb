@@ -14,7 +14,7 @@ describe Instructor do
     before(:each) do
       @eval1 = Evaluation.create do |e|
         e.quarter = "SPR2007"
-        e.dept = "CSE"
+        e.dept_abbrev = "CSE"
         e.number = "142"
         e.section = "B"
         e.instructor_name = "Benson N Limketkai"
@@ -25,7 +25,7 @@ describe Instructor do
       end
       @eval2 = Evaluation.create do |e|
         e.quarter = "SUM2007"
-        e.dept = "CSE"
+        e.dept_abbrev = "CSE"
         e.number = "142"
         e.section = "A"
         e.instructor_name = "Benson N Limketkai"
@@ -36,7 +36,7 @@ describe Instructor do
       end
       @eval3 = Evaluation.create do |e|
         e.quarter = "SPR2007"
-        e.dept = "CSE"
+        e.dept_abbrev = "CSE"
         e.number = "142"
         e.section = "A"
         e.instructor_name = "Benson N Limketkai"
@@ -73,7 +73,7 @@ describe Instructor do
     before(:each) do
       @eval1 = Evaluation.create do |e|
         e.quarter = "WIN2008"
-        e.dept = "E E"
+        e.dept_abbrev = "E E"
         e.number = "581"
         e.section = "A"
         e.instructor_name = "Howard Jay Chizeck"
@@ -84,7 +84,7 @@ describe Instructor do
       end
       @eval2 = Evaluation.create do |e|
         e.quarter = "SPR2007"
-        e.dept = "E E"
+        e.dept_abbrev = "E E"
         e.number = "449"
         e.section = "A"
         e.instructor_name = "Howard Jay Chizeck"
@@ -117,7 +117,7 @@ describe Instructor do
     before(:each) do
       @eval1 = Evaluation.create do |e|
         e.quarter = "SPR2007"
-        e.dept = "E E"
+        e.dept_abbrev = "E E"
         e.number = "449"
         e.section = "A"
         e.instructor_name = "Howard Jay Chizeck"

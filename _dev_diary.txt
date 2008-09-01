@@ -55,4 +55,24 @@ TODO: refactor specs for Instructor class: average ratings things should be spec
 --------------------------------------------------------------------------------
 Tue Aug 26 03:37:56 -0700 2008
 Put in some work on the view side, but didn't do the TODO above. Enabling caching makes everything hella fast.
+--------------------------------------------------------------------------------
+Thu Aug 28 01:25:20 -0700 2008
+TODO: spec out CourseTitle.
+--------------------------------------------------------------------------------
+Mon Sep 01 13:52:24 -0700 2008
+Today I intend to implement searching, and get a live site running on my Joyent FB accelerator host.
+Today TODOs:
+ V* compose a small development db data set so i can test overall averages without waiting hours
+ * work on search functionality
+ * work on pagination
+ * work on comparisons to overall averages functionality
+ * get rails working on Joyent, and deploy site there.
+Also, implemented nicer-looking URLs through use of to_param. TODO: spec to_param
+ 
+Later TODOs:
+ * refactor specs for the average ratings module.
+ 
+v.2 functionality:
+ * better statistics, like histograms and percentiles (this instructor is in the 90th percentile for his department, 40th percentile for this course.)
+
 puts "-"*80; puts Time.new

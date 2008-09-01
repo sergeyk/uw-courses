@@ -79,7 +79,8 @@ a:hover { color: #fff; background-color:#000; }
   font-size: 120%;
 }
 
-.evaluation .enrolled span {
+/* Numbers presented in a purple box. */
+.number_box {
   border: 1px solid black;
   color: #fff;
   background: #6d6dbf;

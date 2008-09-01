@@ -1,4 +1,4 @@
-class Course < AbstractCourse
+class Course < AbstractCourse  
   acts_as_ferret :fields => [:instructor_name]
 
   before_validation :process_names
