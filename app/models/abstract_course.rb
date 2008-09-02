@@ -10,15 +10,21 @@ class AbstractCourse < ActiveRecord::Base
   validates_format_of :dept_abbrev, :with => /^[A-Z]([A-Z]| |\&)*[A-Z]$/
   validates_format_of :number, :with => /^[0-9][0-9][0-9]$/
   
-  # Creates and returns a Department object for the dept_abbrev
+  ###
+  # Creating and returning non-ActiveRecord objects
+  ###
   def dept
     Department.new(dept_abbrev)
   end
   
-  # Creates and returns an Instructor object for the instructor_name
+  def course_title
+    CourseTitle.new(dept_abbrev, number)
+  end
+  
   def instructor
     Instructor.new(instructor_name)
   end
+  
   
   def human_quarter
     match = quarter.match(/([A-Z]+)(\d+)/)

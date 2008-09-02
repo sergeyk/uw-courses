@@ -1,8 +1,9 @@
 .evaluation
   .instructor-title-quarter
-    .instructor= link_to @evaluation.human_instructor_name, instructor_path(@evaluation.human_instructor_name)
+    .instructor
+      = link_to @evaluation.human_instructor_name, instructor_path(@evaluation.instructor)
     .title-quarter
-      %span.title= @evaluation.human_title
+      = link_to @evaluation.human_title
       |
       %span.quarter= @evaluation.human_quarter
   .enrolled

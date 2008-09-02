@@ -1,6 +1,6 @@
 class DepartmentsController < ApplicationController
   def index
-    @departments = Department::ALL_DEPARTMENTS
+    @departments = Evaluation::ALL_DEPARTMENTS
   end
   
   def show

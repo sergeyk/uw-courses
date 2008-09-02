@@ -1,25 +1,24 @@
-#evaluations-list
-  %table
-    %tr.header-row
-      %td{:rowspan => '2'} Instructor Name
-      %td{:rowspan => '2'} Course
-      %td{:rowspan => '2'} Quarter
-      %td{:colspan => '4'} Average Ratings
-      %td{:rowspan => '2'} View
-    %tr.header-row
-      %td Overall
-      %td Instructor-specific
-      %td Course-specific
-      %td Grading
-    - @evaluations.each do |evaluation|
-      %tr{:class => cycle('even-row','odd-row')}
-        %td
-          = evaluation.human_instructor_name
-          = " (#{link_to "see all", instructor_path(evaluation.instructor)})"
-        %td= "#{link_to("#{evaluation.dept_abbrev}", department_path(evaluation.dept_abbrev))} #{evaluation.human_number}"
-        %td= evaluation.human_quarter
-        %td= evaluation.overall_rating
-        %td= evaluation.instructor_specific_rating
-        %td= evaluation.course_specific_rating
-        %td= evaluation.grading_rating ? evaluation.grading_rating : "---"
-        %td= link_to 'Show', evaluation
+%table#evaluations-table
+  %tr.header-row
+    %td{:rowspan => '2'} Instructor Name
+    %td{:rowspan => '2'} Course
+    %td{:rowspan => '2'} Quarter
+    %td{:colspan => '4'} Average Ratings
+    %td{:rowspan => '2'} View
+  %tr.header-row
+    %td Overall
+    %td Instructor-specific
+    %td Course-specific
+    %td Grading
+  - @evaluations.each do |evaluation|
+    %tr{:class => cycle('even-row','odd-row')}
+      %td
+        = evaluation.human_instructor_name
+        = " (#{link_to "see all", instructor_path(evaluation.instructor)})"
+      %td= "#{link_to("#{evaluation.dept_abbrev}", department_path(evaluation.dept_abbrev))} #{evaluation.human_number}"
+      %td= evaluation.human_quarter
+      %td= evaluation.overall_rating
+      %td= evaluation.instructor_specific_rating
+      %td= evaluation.course_specific_rating
+      %td= evaluation.grading_rating ? evaluation.grading_rating : "---"
+      %td= link_to 'Show', evaluation

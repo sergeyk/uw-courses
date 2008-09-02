@@ -1,8 +1,12 @@
-%h2.heading Listing all departments
-
-%table#departments-list
-  %tr.header-row
-    %td Department Abbreviation
-    - @departments.each do |department|
-      %tr{:class => cycle('even-row','odd-row')}
-        %td= link_to(department, department_path(department))
+#departments-list.span-12.prepend-6.append-6.center
+  %h2 Listing all departments
+  %table
+    %tr.header-row
+      %td Department Abbreviation
+      %td Number of evaluations
+      %td Average Rating
+      - @departments.each do |department|
+        %tr{:class => cycle('even-row','odd-row')}
+          %td= link_to(department, department_path(department))
+          %td TODO
+          %td TODO

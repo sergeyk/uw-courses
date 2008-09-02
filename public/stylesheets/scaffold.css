@@ -1,17 +1,7 @@
-
-
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
-}
-
-
-
-.fieldWithErrors {
-  padding: 2px;
-  background-color: red;
-  display: table;
 }
 
 #errorExplanation {

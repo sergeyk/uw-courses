@@ -1,8 +1,6 @@
 class Department
   include AverageRatingsModule
   
-  ALL_DEPARTMENTS = Evaluation.find(:all, :select => 'dept_abbrev', :group => 'dept_abbrev', :order => 'dept_abbrev ASC').map { |x| x.dept_abbrev }
-  
   attr_reader :abbrev
 
   def initialize(dept_abbreviation)

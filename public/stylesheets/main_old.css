@@ -1,0 +1,62 @@
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+h1,h2,h3 {
+  font-family: arial, helvetica, sans-serif;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+.box {
+  font-variant: small-caps;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  background: #fff7e6;
+}
+
+.heading {
+  font-variant: small-caps;
+}
+
+#evaluations-list {
+  padding: 5px;
+}
+
+#evaluations-list td {
+  padding: 5px;
+}
+
+
+.evaluation div {
+  padding: 5px;
+}
+
+.evaluation .instructor {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.evaluation .instructor-title-quarter {
+  font-size: 120%;
+}
+
+/* Numbers presented in a purple box. */
+.number_box {
+  border: 1px solid black;
+  color: #fff;
+  background: #6d6dbf;
+}
+
+.scores {
+  text-align: center;
+}
+
+.scores .question {
+  font-weight: bold;
+}

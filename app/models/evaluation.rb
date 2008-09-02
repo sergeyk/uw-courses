@@ -18,6 +18,16 @@ class Evaluation < AbstractCourse
     return errors.add("Percentage values for :content don't add up to 100!") unless scores.percentages_add_up?
   end
   
+  ###
+  # Compile-time caching
+  ###
+  ALL_COURSE_TITLES = Evaluation.find(:all, :select => 'dept_abbrev, number',
+    :group => 'dept_abbrev, number', :order => 'dept_abbrev, number ASC').map { |x| x.course_title }
+  ALL_DEPARTMENTS = Evaluation.find(:all, :select => 'dept_abbrev',
+    :group => 'dept_abbrev', :order => 'dept_abbrev ASC').map { |x| x.dept_abbrev }
+  ALL_INSTRUCTORS = Evaluation.find(:all, :select => 'instructor_name',
+    :group => 'instructor_name', :order => 'instructor_name ASC').map { |x| x.instructor_name }
+  
   # TODO: spec out
   def overall_rating
     round_rating self.scores.averages[Scores::ALL_KEYS]
