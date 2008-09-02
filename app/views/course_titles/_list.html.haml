@@ -1,6 +1,6 @@
-%table#course-titles-list
+%table
   %tr.header-row
-    %td{:rowspan => '2'} Name
+    %td{:rowspan => '2'} Course title
     %td{:rowspan => '2'} Evaluations on file
     %td{:colspan => '4'} Average ratings
   %tr.header-row
@@ -8,7 +8,7 @@
     %td Instructor-specific
     %td Course-specific
     %td Grading
-  - @course_titles.each do |course|
+  - @courses.each do |course|
     %tr{:class => cycle('even-row','odd-row')}
       %td= link_to course.human_name, course_title_path(course)
       %td= course.evaluations.size
@@ -16,3 +16,4 @@
       %td= course.average_instructor_specific_rating or "--"
       %td= course.average_course_specific_rating or "--"
       %td= course.average_grading_rating or "--"
+%p= will_paginate(@paginated_courses)

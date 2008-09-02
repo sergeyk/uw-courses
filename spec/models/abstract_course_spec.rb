@@ -110,39 +110,40 @@ describe AbstractCourse do
       Course.find(:all).size.should == 1
     
       # POSITIVE CASES
-      ferret_result = Course.find_by_instructor_name("BENSON N LIMKETKAI")
-      ferret_result.size.should == 1
-      ferret_result.include?(@course1).should be_true
-    
-      ferret_result = Course.find_by_instructor_name("BENSON NELSON LIMKETKAI")
+      ferret_result = Course.find_by_contents("BENSON N LIMKETKAI")
       ferret_result.size.should == 1
       ferret_result.include?(@course1).should be_true
 
-      ferret_result = Course.find_by_instructor_name("LIMKETKAI, BENSON N.")
+      ferret_result = Course.find_by_contents("LIMKETKAI, BENSON N.")
       ferret_result.size.should == 1
       ferret_result.include?(@course1).should be_true
     
-      ferret_result = Course.find_by_instructor_name("LIMKETKAI")
+      ferret_result = Course.find_by_contents("LIMKETKAI")
       ferret_result.size.should == 1
       ferret_result.include?(@course1).should be_true
     
-      ferret_result = Course.find_by_instructor_name("LIMMKETKA~")
+      ferret_result = Course.find_by_contents("LIMMKETKA~")
       ferret_result.size.should == 1
       ferret_result.include?(@course1).should be_true
     
-      ferret_result = Course.find_by_instructor_name("BENSON")
+      ferret_result = Course.find_by_contents("BENSON")
       ferret_result.size.should == 1
       ferret_result.include?(@course1).should be_true
     
-      ferret_result = Course.find_by_instructor_name("N")
+      ferret_result = Course.find_by_contents("N")
       ferret_result.size.should == 1
       ferret_result.include?(@course1).should be_true
     
       # NEGATIVE CASES
-      ferret_result = Course.find_by_instructor_name("BEN")
+      ferret_result = Course.find_by_contents("BEN")
       ferret_result.size.should == 0
     
-      ferret_result = Course.find_by_instructor_name("LIMKETKA")
+      ferret_result = Course.find_by_contents("LIMKETKA")
+      ferret_result.size.should == 0
+      
+      # This used to be a positive case, but to get will_paginate working, I moved
+      # away from using custom find_by_instructor_name method
+      ferret_result = Course.find_by_contents("BENSON NELSON LIMKETKAI")
       ferret_result.size.should == 0
     end
   
@@ -173,15 +174,15 @@ describe AbstractCourse do
     
       Course.find(:all).size.should == 2
     
-      ferret_result = Course.find_by_instructor_name("GREGORY M. ELLIS")
+      ferret_result = Course.find_by_contents("GREGORY M. ELLIS")
       ferret_result.size.should == 1
       ferret_result.include?(@course2).should be_true
     
-      ferret_result = Course.find_by_instructor_name("JOHN MARK ELLIS")
+      ferret_result = Course.find_by_contents("JOHN MARK ELLIS")
       ferret_result.size.should == 1
       ferret_result.include?(@course3).should be_true
     
-      ferret_result = Course.find_by_instructor_name("ELLIS")
+      ferret_result = Course.find_by_contents("ELLIS")
       ferret_result.size.should == 2
     end
   end
@@ -204,7 +205,7 @@ describe AbstractCourse do
       
       Evaluation.find(:all).size.should == 1
       
-      ferret_result = Evaluation.find_by_instructor_name("BENSON N LIMKETKAI")
+      ferret_result = Evaluation.find_by_contents("BENSON N LIMKETKAI")
       ferret_result.size.should == 1
       ferret_result.include?(@eval1).should be_true
     end

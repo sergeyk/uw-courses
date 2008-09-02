@@ -15,18 +15,25 @@ class CourseTitle
     "#{@dept_abbrev} #{@number}"
   end
   
-  def self.search(query)
-    return Evaluation.find(:all) if query.blank?
-    
+  
+  # Returns a will_paginate collection of Evaluations
+  def self.search(query, page)
+    return Evaluation.paginate(:per_page => ParamHyphenation::PAGE_SIZE, :page => page,
+      :select => 'dept_abbrev, number',
+      :group => 'dept_abbrev, number', :order => 'dept_abbrev, number ASC') if query.blank?
+      
     return nil unless match = query.match(/([A-z| ]+)([0-9]+)/) and match.size == 3
     dept_abbrev, number = match[1].strip.upcase, match[2].strip
-    evaluations = Evaluation.find(:all,
+    
+    evaluations = Evaluation.paginate(:per_page => ParamHyphenation::PAGE_SIZE, :page => page,
       :conditions => ["dept_abbrev = ? AND number = ?", dept_abbrev, number],
-      :group => 'dept_abbrev, number', :order => "dept_abbrev, number ASC")
+      :group => 'dept_abbrev, number', :order => 'dept_abbrev, number ASC')
+      
     return (evaluations.size > 0) ? evaluations : nil
   end
   
-  ### PARAMS
+  
+  ### PARAM CONVERSION
   def to_param
     hyphenate(human_name)
   end

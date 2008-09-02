@@ -1,14 +1,15 @@
 .evaluation.span-16.prepend-2.append-2.center
-  %h3.instructor= link_to @evaluation.human_instructor_name, instructor_path(@evaluation.instructor)
-  %p#title-quarter
-    = @evaluation.human_title
-    |
-    = @evaluation.human_quarter
-  %p#enrolled
-    %span.number_box= @evaluation.surveyed.to_s
-    surveyed out of
-    %span.number_box= @evaluation.enrolled.to_s
-    enrolled. Reliability:
-    %span.number_box= "#{@evaluation.reliability}%"
-    
+  %h2.instructor= link_to @evaluation.human_instructor_name, instructor_path(@evaluation.instructor)
+  %p
+    #title-quarter
+      = @evaluation.human_title
+      |
+      = @evaluation.human_quarter
+    #enrolled
+      %span.number_box= @evaluation.surveyed.to_s
+      surveyed out of
+      %span.number_box= @evaluation.enrolled.to_s
+      enrolled. Reliability:
+      %span.number_box= "#{@evaluation.reliability}%"
+      
   = render(:partial => "scores", :object => @evaluation.scores)

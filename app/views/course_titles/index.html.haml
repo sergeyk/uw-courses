@@ -1,2 +1,8 @@
-%h1 Listing all courses
-= render :partial => 'list'
+#course_title-search.center
+  .search-box.span-10.prepend-5.append-5
+    = render :partial => 'searches/courses_form'
+  .results.span-20
+    - unless @courses
+      %p No results found.
+    - else  
+      = render(:partial => 'list')

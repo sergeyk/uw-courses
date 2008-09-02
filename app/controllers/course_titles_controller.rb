@@ -1,11 +1,9 @@
 class CourseTitlesController < ApplicationController
   def index
-    @course_titles = Evaluation::ALL_COURSE_TITLES
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @course_titles }
-    end
+    @paginated_courses = CourseTitle.search(params[:search], params[:page])
+    @courses = @paginated_courses ?
+      @paginated_courses.map { |e| CourseTitle.new(e.dept_abbrev, e.number) } :
+      nil
   end
 
   def show
@@ -16,9 +14,5 @@ class CourseTitlesController < ApplicationController
     @average_instructor_specific_rating = @course.average_instructor_specific_rating
     @average_course_specific_rating = @course.average_course_specific_rating
     @average_grading_rating = @course.average_grading_rating
-  end
-  
-  def search
-    @evaluations = CourseTitle.search(params[:query])
   end
 end

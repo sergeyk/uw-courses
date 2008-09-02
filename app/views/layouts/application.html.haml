@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/stylesheets/blueprint-css/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="/stylesheets/blueprint-css/blueprint/print.css" type="text/css" media="print">    
     <!–[if IE]><link rel="stylesheet" href="/stylesheets/blueprint-css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]–>
-    -# stylesheet_link_tag('scaffold', 'main_old')
     = stylesheet_link_tag('main')
     
   %body
@@ -19,9 +18,15 @@
         = yield
       %hr
       #footer.span-24.center
-        = link_to "See All Departments", departments_path
-        |
-        = link_to "Search Instructors", '/instructors/search'
-        |
-        = link_to "Search Courses", '/course_titles/search'
+        %p
+          = link_to "Search Instructors", instructors_path
+          |
+          = link_to "See All Departments", departments_path
+          |
+          = link_to "Search Courses", course_titles_path
+        %hr
+      .span-12.border.left
+        = mail_to "uwevaluations@gmail.com", "contact me", :encode => 'javascript'
+      .span-12.last.right
+        = "#{Evaluation::SIZE} evaluations"
       

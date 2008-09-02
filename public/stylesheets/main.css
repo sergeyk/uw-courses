@@ -14,9 +14,9 @@ a { color: #000; }
 a:visited { color: #666; }
 a:hover { color: #fff; background-color:#000; }
 
-.center {
-  text-align: center;
-}
+.center { text-align: center; }
+.left { text-align: left; }
+.right { text-align: right; }
 
 div.border {
   border-right:1px solid #333;

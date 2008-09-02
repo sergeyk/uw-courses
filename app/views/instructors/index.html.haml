@@ -1,21 +1,9 @@
-#instructors-list.span-12.prepend-4.append-4
-  %h2 Listing all instructors
-  %table
-    %tr.header-row
-      %td{:rowspan => '2'} Name
-      %td{:rowspan => '2'} Evaluations on file
-      %td{:colspan => '4'} Average ratings
-    %tr.header-row
-      %td Overall
-      %td Instructor-specific
-      %td Course-specific
-      %td Grading
-    - @instructors.each do |instructor|
-      - instructor = Instructor.new(instructor)
-      %tr{:class => cycle('even-row','odd-row')}
-        %td= link_to instructor.human_name, instructor_path(instructor.human_name)
-        %td= instructor.evaluations.size
-        %td= instructor.average_overall_rating or "--"
-        %td= instructor.average_instructor_specific_rating or "--"
-        %td= instructor.average_course_specific_rating or "--"
-        %td= instructor.average_grading_rating or "--"
+#instructors-search.center
+  .search-box.span-10.prepend-5.append-5
+    = render :partial => 'searches/instructors_form'
+  .results.span-20
+    - unless @instructors
+      %p No results found.
+    - else  
+      = render(:partial => 'list')
+      

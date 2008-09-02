@@ -24,6 +24,8 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   config.gem "haml"
   config.gem "hpricot"
+  config.gem 'mislav-will_paginate', :version => '~> 2.3.2', :lib => 'will_paginate', 
+      :source => 'http://gems.github.com'
   # config.gem "aws-s3", :lib => "aws/s3"
 
   # Only load the plugins named here, in the order given. By default, all plugins 
@@ -66,5 +68,7 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
 end
 
-#monkey-patching Float
+# monkey-patching Float
 require 'Float'
+
+require "will_paginate"

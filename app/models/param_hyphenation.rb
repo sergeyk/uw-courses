@@ -10,4 +10,7 @@ module ParamHyphenation
   def self.dehyphenate(x)
     x.gsub('-',' ')
   end
+  
+  # This is for will_paginate. Really should be elsewhere.
+  PAGE_SIZE = 15
 end

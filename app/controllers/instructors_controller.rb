@@ -1,6 +1,10 @@
 class InstructorsController < ApplicationController
+  
   def index
-    @instructors = Evaluation.find(:all, :select => 'instructor_name', :group => 'instructor_name', :order => 'instructor_name ASC').map {|x| x.instructor_name}
+    @paginated_instructors = Instructor.search(params[:search], params[:page])
+    @instructors = @paginated_instructors ?
+      @paginated_instructors.map { |e| Instructor.new(e.instructor_name) } :
+      nil
   end
   
   def show
@@ -13,7 +17,4 @@ class InstructorsController < ApplicationController
     @average_grading_rating = @instructor.average_grading_rating
   end
   
-  def search
-    @evaluations = Instructor.search(params[:query])
-  end
 end

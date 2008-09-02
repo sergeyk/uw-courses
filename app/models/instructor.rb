@@ -3,7 +3,7 @@ class Instructor
   include AverageRatingsModule, ParamHyphenation
   
   def evaluations
-    @evaluations ||= Evaluation.find_by_instructor_name(@name)
+    @evaluations ||= Evaluation.find_with_ferret(@name)
   end
   
   attr_reader :name
@@ -17,6 +17,22 @@ class Instructor
     "#{@name.downcase.split.map { |x| x.split('-').map { |y| y.split('\'').map { |z| z.capitalize }.join('\'') }.join('-') }.join(' ')}"
   end
   
+  # Returns a will_paginate collection of Evaluations
+  def self.search(query, page)
+    page = (page.to_i > 0) ? page.to_i : 1
+    if query.blank?
+      evaluations = Evaluation.paginate(:per_page => ParamHyphenation::PAGE_SIZE, :page => page,
+      :group => 'instructor_name', :select => 'instructor_name', :order => 'instructor_name ASC')
+    else
+      evaluations = Evaluation.find_with_ferret(query,
+        {:per_page => ParamHyphenation::PAGE_SIZE, :page => page},
+        :group => 'instructor_name', :select => 'instructor_name', :order => 'instructor_name ASC')
+    end
+    (evaluations.size > 0) ? evaluations : nil
+  end
+  
+  
+  ### PARAM CONVERSION
   def to_param
     hyphenate(human_name)
   end
@@ -25,10 +41,4 @@ class Instructor
     Instructor.new(ParamHyphenation.dehyphenate(param))
   end
   
-  def self.search(query)
-    return Evaluation.find(:all) if query.blank?
-    
-    evaluations = Evaluation.find_by_instructor_name(query, :order => 'quarter, dept_abbrev, number ASC')
-    return (evaluations.size > 0) ? evaluations : nil
-  end
 end

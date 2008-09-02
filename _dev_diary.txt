@@ -64,17 +64,26 @@ Today I intend to implement searching, and get a live site running on my Joyent 
 Today TODOs:
  V* compose a small development db data set so i can test overall averages without waiting hours
  V* work on search functionality
- * work on pagination
+ V* work on pagination
+ V* search should return not evaluations but Instructors and CourseTitles
  * work on comparisons to overall averages functionality
  * get rails working on Joyent, and deploy site there.
 Also, implemented nicer-looking URLs through use of to_param. TODO: spec to_param
  
 Later TODOs:
  * refactor specs for the average ratings module.
+ * go through everything in models and spec it out--shouldn't be much
+ * spec out controller stuff
  
 v.2 functionality:
  * better statistics, like histograms and percentiles (this instructor is in the 90th percentile for his department, 40th percentile for this course.)
  * sortable columns: see classes sorted by grading rating
  * search by current quarter sln
+--------------------------------------------------------------------------------
+Tue Sep 02 03:28:15 -0700 2008
+WEll I did a lot of work today, and got search working (http://railscasts.com/episodes/37 was a big help) and the site looking nice. Pagination is still not implemented, working on that now.
+--------------------------------------------------------------------------------
+Tue Sep 02 06:06:59 -0700 2008
+Goddamn it's late, but everything is mostly done. Now all that's left is to deploy somewhere and populate. And to put GOogle analytics, and to get a domain name. Will get a domain name right now.
 
 puts "-"*80; puts Time.new
