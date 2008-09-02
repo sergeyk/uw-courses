@@ -1,0 +1,7 @@
+- form_tag('instructors/search', :method => 'get') do
+  %fieldset
+    %legend Instructor Search
+    %p You can use the full or partial name of an instructor
+    - value = params[:query] != nil ? params[:query] : "Stewart Reges"
+    = text_field_tag(:query, value)
+    = submit_tag('Search', :name => nil, :class => 'button')

@@ -1,17 +1,18 @@
-%table#average-ratings
-  %tr.odd-row
-    %td Number of evaluations on file:
-    %td= @num_evaluations
-  %tr.even-row
-    %td Average overall rating:
-    %td= @average_overall_rating
-  %tr.odd-row
-    %td Average instructor-specific rating:
-    %td= @average_instructor_specific_rating
-  %tr.even-row
-    %td Average course-specific rating:
-    %td= @average_course_specific_rating
-  %tr.odd-row
-    %td Average grading rating:
-    %td= @average_grading_rating
+.average-ratings.span-8.prepend-6.append-6
+  %table
+    %tr.odd-row
+      %td Number of evaluations on file:
+      %td= @evaluations.size
+    %tr.even-row
+      %td Average overall rating:
+      %td= @average_overall_rating
+    %tr.odd-row
+      %td Average instructor-specific rating:
+      %td= @average_instructor_specific_rating
+    %tr.even-row
+      %td Average course-specific rating:
+      %td= @average_course_specific_rating
+    %tr.odd-row
+      %td Average grading rating:
+      %td= @average_grading_rating
     

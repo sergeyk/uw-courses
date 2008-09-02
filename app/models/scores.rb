@@ -44,7 +44,7 @@ class Scores < Hash
   def self.expand_question(hash_key_question)
     case hash_key_question.to_s
     when "whole"
-      return "The course as a whole"
+      return "Course as a whole"
     when "interest"
       return "Instructor's interest"
     when "contribution"
@@ -56,7 +56,7 @@ class Scores < Hash
     when "grading"
       return "Grading techniques"
     when "content"
-      return "The course content"
+      return "Course content"
     else
       return hash_key_question.to_s
     end

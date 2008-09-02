@@ -3,11 +3,17 @@ class EvaluationsController < ApplicationController
   # GET /evaluations.xml
   def index
     if params[:department_id]
-      @parent_name = params[:department_id]
-      @evaluations = Evaluation.find_all_by_dept_abbrev(params[:department_id], :order => "dept_abbrev, instructor_name ASC")
+      @department = Department.from_param(params[:department_id])
+      @parent_name = @department.human_name
+      @evaluations = @department.evaluations
     elsif params[:instructor_id]
-      @parent_name = params[:instructor_id]
-      @evaluations = Evaluation.find_by_instructor_name(params[:instructor_id], :order => "instructor_name, dept_abbrev ASC")
+      @instructor = Instructor.from_param(params[:instructor_id])
+      @parent_name = @instructor.human_name
+      @evaluations = @instructor.evaluations
+    elsif params[:course_title_id]
+      @course = CourseTitle.from_param(params[:course_title_id])
+      @parent_name = @course.human_name
+      @evaluations = @course.evaluations
     else
       @evaluations = Evaluation.find(:all, :order => "dept_abbrev, instructor_name ASC")
     end

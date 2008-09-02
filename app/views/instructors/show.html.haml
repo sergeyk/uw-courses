@@ -1,7 +1,5 @@
-%h1= @instructor_name
-
-= render :partial => "evaluations/average_ratings"
-
-= render :partial => "evaluations/evaluations", :object => @evaluations
-
-= link_to "Back to all instructors", instructors_path
+#instructor-page.center
+  %h2= @instructor.human_name
+  = render :partial => "evaluations/average_ratings"
+  = render :partial => "evaluations/evaluations"
+  %p= link_to "Back to home page", root_path

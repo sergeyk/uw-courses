@@ -63,7 +63,7 @@ Mon Sep 01 13:52:24 -0700 2008
 Today I intend to implement searching, and get a live site running on my Joyent FB accelerator host.
 Today TODOs:
  V* compose a small development db data set so i can test overall averages without waiting hours
- * work on search functionality
+ V* work on search functionality
  * work on pagination
  * work on comparisons to overall averages functionality
  * get rails working on Joyent, and deploy site there.
@@ -74,5 +74,7 @@ Later TODOs:
  
 v.2 functionality:
  * better statistics, like histograms and percentiles (this instructor is in the 90th percentile for his department, 40th percentile for this course.)
+ * sortable columns: see classes sorted by grading rating
+ * search by current quarter sln
 
 puts "-"*80; puts Time.new

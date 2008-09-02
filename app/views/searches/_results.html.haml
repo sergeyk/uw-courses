@@ -1,0 +1,5 @@
+.results
+  - unless @evaluations
+    No results found.
+  - else  
+    = render(:partial => 'evaluations/evaluations') if @evaluations

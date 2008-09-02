@@ -1,2 +1,0 @@
-module CourseTitleHelper
-end

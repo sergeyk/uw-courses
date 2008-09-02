@@ -1,10 +1,10 @@
-.scores
-  %table
-    %tr.header-row
-      %td Question
-      %td Median
-      %td Bar Plot of Percentages
-    - scores.keys.each do |key|
+%table#scores
+  %tr.header-row
+    %td Question
+    %td Median
+    %td Bar Plot of Percentages
+  - Scores::ALL_KEYS.each do |key|
+    - if scores[key]
       %tr{:class => 'even-row'}
         %td.question= Scores.expand_question(key)
         %td.median= scores[key][:median]

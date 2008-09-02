@@ -16,11 +16,4 @@ module AverageRatingsModule
   def average_grading_rating
     @average_grading_rating ||= Evaluation.average_rating(evaluations, Scores::GRADING)
   end
-  
-  
-  # Replaces all non-alphanumeric characters with hyphens, and then all multiple
-  # hyphens with single ones.
-  def hyphenate_param
-    lambda { |x| x.gsub(/[^[:alnum:]]/,'-').gsub(/--+/,'-') }
-  end
 end

@@ -1,4 +1,4 @@
-#departments-list.span-12.prepend-6.append-6.center
+#departments-list.span-12.prepend-4.append-4.center
   %h2 Listing all departments
   %table
     %tr.header-row
@@ -7,6 +7,6 @@
       %td Average Rating
       - @departments.each do |department|
         %tr{:class => cycle('even-row','odd-row')}
-          %td= link_to(department, department_path(department))
+          %td= link_to(department.human_name, department_path(department))
           %td TODO
           %td TODO

@@ -11,15 +11,17 @@
     
   %body
     .container
-      #header.span-24
+      #header.span-24.center
         %h1 Unofficial University of Washington Evaluations Catalog
-      #main.span-24
+      %hr
+      #main.span-20.prepend-2.append-2
         %p.flash= flash[:notice]
         = yield
-      #footer.span-24
-        = link_to "All Departments", departments_path
+      %hr
+      #footer.span-24.center
+        = link_to "See All Departments", departments_path
         |
-        = link_to "All Instructors", instructors_path
+        = link_to "Search Instructors", '/instructors/search'
         |
-        = link_to "All Courses", course_titles_path
+        = link_to "Search Courses", '/course_titles/search'
       

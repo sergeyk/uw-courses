@@ -1,5 +1,6 @@
+# "Benson N Limketkai"
 class Instructor
-  include AverageRatingsModule
+  include AverageRatingsModule, ParamHyphenation
   
   def evaluations
     @evaluations ||= Evaluation.find_by_instructor_name(@name)
@@ -17,6 +18,17 @@ class Instructor
   end
   
   def to_param
-    hyphenate_param.call(human_name)
+    hyphenate(human_name)
+  end
+  
+  def self.from_param(param)
+    Instructor.new(ParamHyphenation.dehyphenate(param))
+  end
+  
+  def self.search(query)
+    return Evaluation.find(:all) if query.blank?
+    
+    evaluations = Evaluation.find_by_instructor_name(query, :order => 'quarter, dept_abbrev, number ASC')
+    return (evaluations.size > 0) ? evaluations : nil
   end
 end

@@ -1,0 +1,4 @@
+#course_title-page.span-12.prepend-4.append-4.center
+  %h2= "Statistics for #{@course.human_name}"
+  = render :partial => "evaluations/average_ratings"
+  = link_to "See all evaluations for this course", course_title_evaluations_path(@course)

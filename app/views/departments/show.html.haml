@@ -1,4 +1,4 @@
-#department-page.span-12.prepend-6.append-6.center
-  %h2= "Statistics for the #{@department_abbrev} department"
+#department-page.center
+  %h2= "Statistics for the #{@department.human_name} department"
   = render :partial => "evaluations/average_ratings"
   = link_to "See all evaluations for this department", department_evaluations_path(@department)
