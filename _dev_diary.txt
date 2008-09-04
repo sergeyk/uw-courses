@@ -85,5 +85,10 @@ WEll I did a lot of work today, and got search working (http://railscasts.com/ep
 --------------------------------------------------------------------------------
 Tue Sep 02 06:06:59 -0700 2008
 Goddamn it's late, but everything is mostly done. Now all that's left is to deploy somewhere and populate. And to put GOogle analytics, and to get a domain name. Will get a domain name right now.
+--------------------------------------------------------------------------------
+Thu Sep 04 00:01:32 -0700 2008
+Got a domain name (through bluehost.com, $10), and also registered for Slicehost (3 months, $60). Spent the past couple of hours setting up my slice and getting Passenger working. Appears to be working, but ferret is fucking up in production--required Dbruby server or something; I don't think using it is worth it, so I think I'll switch to just sql search now.
+It is a lot of work, but I'm doing it. A HIGH priority
+TODO: go through the model specs, and revise/add more.
 
 puts "-"*80; puts Time.new

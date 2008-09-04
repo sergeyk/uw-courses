@@ -3,7 +3,7 @@ class Instructor
   include AverageRatingsModule, ParamHyphenation
   
   def evaluations
-    @evaluations ||= Evaluation.find_with_ferret(@name)
+    @evaluations ||= Evaluation.find_all_by_instructor_name(@name)
   end
   
   attr_reader :name
@@ -24,8 +24,8 @@ class Instructor
       evaluations = Evaluation.paginate(:per_page => ParamHyphenation::PAGE_SIZE, :page => page,
       :group => 'instructor_name', :select => 'instructor_name', :order => 'instructor_name ASC')
     else
-      evaluations = Evaluation.find_with_ferret(query,
-        {:per_page => ParamHyphenation::PAGE_SIZE, :page => page},
+      evaluations = Evaluation.paginate_by_instructor_name(query,
+        :per_page => ParamHyphenation::PAGE_SIZE, :page => page,
         :group => 'instructor_name', :select => 'instructor_name', :order => 'instructor_name ASC')
     end
     (evaluations.size > 0) ? evaluations : nil

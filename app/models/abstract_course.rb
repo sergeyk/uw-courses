@@ -46,7 +46,7 @@ class AbstractCourse < ActiveRecord::Base
   
   # TODO: spec out if not already
   def human_instructor_name
-    Instructor.new(instructor_name).human_name
+    instructor.human_name
   end
 
 end

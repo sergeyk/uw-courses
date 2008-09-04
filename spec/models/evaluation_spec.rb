@@ -123,4 +123,94 @@ describe Evaluation do
       @eval.should be_valid
     end
   end
+  
+  describe "searching evaluations by name" do
+    it "should find evaluations: sanity check" do
+      @eval1 = Evaluation.create do |e|
+        e.quarter = "SPR2007"
+        e.dept_abbrev = "CSE"
+        e.number = "142"
+        e.section = "B"
+        e.instructor_name = "Benson N Limketkai"
+        e.course_type = "Form B: Large Lecture"
+        e.surveyed = 81
+        e.enrolled = 225
+        e.scores = Scores.new(:contribution=>{:scores=>[0, 0, 4, 11, 27, 58], :median=>4.64}, :effectiveness=>{:scores=>[0, 0, 5, 12, 25, 58], :median=>4.64}, :content=>{:scores=>[0, 0, 4, 19, 37, 41], :median=>4.25}, :interest=>{:scores=>[1, 0, 3, 17, 42, 37], :median=>4.2}, :learned=>{:scores=>[1, 0, 5, 9, 38, 47], :median=>4.42}, :grading=>{:scores=>[0, 5, 6, 23, 35, 31], :median=>3.94}, :whole=>{:scores=>[0, 0, 5, 21, 28, 46], :median=>4.35})
+      end
+      
+      @eval1.instructor_name.should == "BENSON N LIMKETKAI"
+      Evaluation.find(:all).size.should == 1
+      
+      ### POSITIVE EXAMPLES
+      result = Evaluation.find_all_by_instructor_name("BENSON N LIMKETKAI")
+      result.size.should == 1
+      result.include?(@eval1).should be_true
+      
+      result = Evaluation.find_all_by_instructor_name("BENSON N. LIMKETKAI")
+      result.size.should == 1
+      result.include?(@eval1).should be_true
+      
+      result = Evaluation.find_all_by_instructor_name("BENSON LIMKETKAI")
+      result.size.should == 1
+      result.include?(@eval1).should be_true
+      
+      result = Evaluation.find_all_by_instructor_name("LIMKETKAI")
+      result.size.should == 1
+      result.include?(@eval1).should be_true
+      
+      result = Evaluation.find_all_by_instructor_name("BENSON")
+      result.size.should == 1
+      result.include?(@eval1).should be_true
+      
+      result = Evaluation.find_all_by_instructor_name("N")
+      result.size.should == 1
+      result.include?(@eval1).should be_true
+      
+      ### NEGATIVE EXAMPLES
+      result = Evaluation.find_all_by_instructor_name("LIMKETKAI, BENSON N.")
+      result.size.should == 0
+      
+      result = Evaluation.find_all_by_instructor_name("LIMKETKAI BENSON")
+      result.size.should == 0
+    end
+    
+    it "should find multiple evaluations with same first name" do
+      @eval1 = Evaluation.create do |e|
+        e.quarter = "SPR2007"
+        e.dept_abbrev = "CSE"
+        e.number = "142"
+        e.section = "B"
+        e.instructor_name = "Benson N Limketkai"
+        e.course_type = "Form B: Large Lecture"
+        e.surveyed = 81
+        e.enrolled = 225
+        e.scores = Scores.new(:contribution=>{:scores=>[0, 0, 4, 11, 27, 58], :median=>4.64}, :effectiveness=>{:scores=>[0, 0, 5, 12, 25, 58], :median=>4.64}, :content=>{:scores=>[0, 0, 4, 19, 37, 41], :median=>4.25}, :interest=>{:scores=>[1, 0, 3, 17, 42, 37], :median=>4.2}, :learned=>{:scores=>[1, 0, 5, 9, 38, 47], :median=>4.42}, :grading=>{:scores=>[0, 5, 6, 23, 35, 31], :median=>3.94}, :whole=>{:scores=>[0, 0, 5, 21, 28, 46], :median=>4.35})
+      end
+      
+      @eval2 = Evaluation.create do |e|
+        e.quarter = "WIN2008"
+        e.dept_abbrev = "PRSAN"
+        e.number = "422"
+        e.section = "A"
+        e.course_type = "Form A: Small lecture/discussion"
+        e.surveyed = 9
+        e.enrolled = 15
+        e.instructor_name = "SUSAN BENSON"
+        e.scores = Scores.new(:learned=>{:scores=>[0, 0, 12, 25, 12, 50], :median=>4.5}, :whole=>{:scores=>[0, 0, 11, 11, 33, 44], :median=>4.33}, :content=>{:scores=>[0, 0, 11, 11, 44, 33], :median=>4.13}, :grading=>{:scores=>[0, 0, 12, 12, 25, 50], :median=>4.5}, :contribution=>{:scores=>[0, 0, 11, 0, 44, 44], :median=>4.38}, :effectiveness=>{:scores=>[0, 0, 11, 0, 44, 44], :median=>4.38}, :interest=>{:scores=>[0, 0, 0, 38, 12, 50], :median=>4.5})
+      end
+
+      Evaluation.find(:all).size.should == 2
+
+      result = Evaluation.find_all_by_instructor_name("benson limketkai")
+      result.size.should == 1
+      result.include?(@eval1).should be_true
+
+      result = Evaluation.find_all_by_instructor_name("susan benson")
+      result.size.should == 1
+      result.include?(@eval2).should be_true
+
+      result = Evaluation.find_all_by_instructor_name("Benson")
+      result.size.should == 2
+    end
+  end
 end

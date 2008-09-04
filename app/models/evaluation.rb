@@ -1,6 +1,5 @@
 class Evaluation < AbstractCourse
   serialize :scores, Scores
-  acts_as_ferret :fields => [:instructor_name]
   
   before_validation :process_name
   
@@ -16,6 +15,30 @@ class Evaluation < AbstractCourse
     return errors.add("Surveyed and enrolled numbers should not be negative") if surveyed < 0 or enrolled < 0
     return errors.add("Scores should have at least :whole, :content, :contribution, :effectiveness") unless scores.all_required_keys_present?
     return errors.add("Percentage values for :content don't add up to 100!") unless scores.percentages_add_up?
+  end
+  
+  # if only one word, surround in % and search
+  # if more than one word, put a % in between the first and last word
+  def self.find_all_by_instructor_name(name, options = {})
+    name = name.strip.upcase.split('.').join
+    if name =~ / /
+      split_name = name.split
+      name = "#{split_name[0]}%#{split_name[-1]}"
+    else
+      name = '%'+name+'%'
+    end
+    Evaluation.find(:all, :conditions => ["instructor_name LIKE ?", name], *options)
+  end
+  
+  def self.paginate_by_instructor_name(name, options = {})
+    name = name.strip.upcase.split('.').join
+    if name =~ / /
+      split_name = name.split
+      name = "#{split_name[0]}%#{split_name[-1]}"
+    else
+      name = '%'+name+'%'
+    end
+    Evaluation.paginate(options.merge(:conditions => ["instructor_name LIKE ?", name]))
   end
   
   ###
