@@ -9,10 +9,12 @@ class CourseTitlesController < ApplicationController
   def show
     @course = CourseTitle.from_param(params[:id])
     
-    @evaluations = @course.evaluations
+    @num_evaluations = @course.evaluations.size
     @average_overall_rating = @course.average_overall_rating
     @average_instructor_specific_rating = @course.average_instructor_specific_rating
     @average_course_specific_rating = @course.average_course_specific_rating
     @average_grading_rating = @course.average_grading_rating
+    
+    @evaluations = CourseTitle.paginated_evaluations(@course, params[:page])
   end
 end

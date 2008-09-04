@@ -2,7 +2,7 @@
   %fieldset
     %legend Course search
     %p You'll have to enter both the department and number of a course
-    - value = params[:search] != nil ? params[:search] : "ART 201"
+    - value = params[:search] != nil ? params[:search] : "PSYCH 305"
     = text_field_tag(:search, value)
     = submit_tag('Search', :name => nil, :class => 'button')
     

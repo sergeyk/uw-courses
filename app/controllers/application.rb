@@ -13,5 +13,7 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
   
+  
+  # For will_paginate methods
   PAGE_SIZE = 15
 end

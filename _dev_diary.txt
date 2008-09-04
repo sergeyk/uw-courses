@@ -90,5 +90,10 @@ Thu Sep 04 00:01:32 -0700 2008
 Got a domain name (through bluehost.com, $10), and also registered for Slicehost (3 months, $60). Spent the past couple of hours setting up my slice and getting Passenger working. Appears to be working, but ferret is fucking up in production--required Dbruby server or something; I don't think using it is worth it, so I think I'll switch to just sql search now.
 It is a lot of work, but I'm doing it. A HIGH priority
 TODO: go through the model specs, and revise/add more.
-
+--------------------------------------------------------------------------------
+Thu Sep 04 01:20:26 -0700 2008
+Woo! App up and running on uwcourses.com. Now must fix up locally, push, and populate database. Will populate database right now, I guess. Alright, it's chugging along. Just registered fro a Google Analytics account under my sergeykarayev account, called uwcourses. Should set up adsense pretty soon, too, and register uwcourses@gmail.com.
+--------------------------------------------------------------------------------
+Thu Sep 04 03:51:07 -0700 2008
+Somehow these things always take way longer than I expect. Did major redesign to use class caching of everything: should be blazing fast even with 30K evals now. In the process, had complete disregard for good style, DRYness, and ruby tricks. MUST go through and clean up later.
 puts "-"*80; puts Time.new

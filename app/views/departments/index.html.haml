@@ -2,11 +2,19 @@
   %h2 Listing all departments
   %table
     %tr.header-row
-      %td Department Abbreviation
-      %td Number of evaluations
-      %td Average Rating
-      - @departments.each do |department|
-        %tr{:class => cycle('even-row','odd-row')}
-          %td= link_to(department.human_name, department_path(department))
-          %td TODO
-          %td TODO
+      %td{:rowspan => '2'} Department
+      %td{:rowspan => '2'} Evaluations on file
+      %td{:colspan => '4'} Average ratings
+    %tr.header-row
+      %td Overall
+      %td Instructor-specific
+      %td Course-specific
+      %td Grading
+    - @departments.each do |dept|
+      %tr{:class => cycle('even-row','odd-row')}
+        %td= link_to dept.human_name, department_path(dept)
+        %td= dept.evaluations.size
+        %td= dept.average_overall_rating or "--"
+        %td= dept.average_instructor_specific_rating or "--"
+        %td= dept.average_course_specific_rating or "--"
+        %td= dept.average_grading_rating or "--"

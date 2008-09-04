@@ -17,35 +17,18 @@ class Evaluation < AbstractCourse
     return errors.add("Percentage values for :content don't add up to 100!") unless scores.percentages_add_up?
   end
   
-  # if only one word, surround in % and search
-  # if more than one word, put a % in between the first and last word
-  def self.find_all_by_instructor_name(name, options = {})
-    name = name.strip.upcase.split('.').join
-    if name =~ / /
-      split_name = name.split
-      name = "#{split_name[0]}%#{split_name[-1]}"
-    else
-      name = '%'+name+'%'
-    end
-    Evaluation.find(:all, :conditions => ["instructor_name LIKE ?", name], *options)
-  end
-  
-  def self.paginate_by_instructor_name(name, options = {})
-    name = name.strip.upcase.split('.').join
-    if name =~ / /
-      split_name = name.split
-      name = "#{split_name[0]}%#{split_name[-1]}"
-    else
-      name = '%'+name+'%'
-    end
-    Evaluation.paginate(options.merge(:conditions => ["instructor_name LIKE ?", name]))
-  end
-  
   ###
   # Compile-time caching
+  # TODO: spec out
+  # TODO: the way im doing this is really stupid, but I can't call constructors of these objects until these
+  # constants have finished loading. I feel like some metaprogramming can solve all this.
   ###
   SIZE = Evaluation.find(:all).size
-  ALL_DEPARTMENTS = Evaluation.find(:all, :select => 'dept_abbrev', :order => 'dept_abbrev ASC').map { |e| e.dept }
+  ALL_DEPARTMENTS = Evaluation.find(:all, :select => 'dept_abbrev', :group => 'dept_abbrev', :order => 'dept_abbrev ASC').map { |e| e.dept_abbrev }
+  ALL_INSTRUCTORS = Evaluation.find(:all, :select => 'instructor_name', :group => 'instructor_name', :order => 'instructor_name ASC').map { |e| e.instructor_name }
+  ALL_COURSE_TITLES = Evaluation.find(:all, :select => 'dept_abbrev, number', :group => 'dept_abbrev, number', :order => 'dept_abbrev, number ASC').map { |e| "#{e.dept_abbrev} #{e.number}" }
+  
+
   
   # TODO: spec out
   def overall_rating
@@ -80,6 +63,30 @@ class Evaluation < AbstractCourse
       return (averages.inject { |x,y| x+y } / (1.0 * averages.size)).round_to(2)
     end
     nil
+  end
+  
+  # if only one word, surround in % and search
+  # if more than one word, put a % in between the first and last word
+  def self.find_all_by_instructor_name(name, options = {})
+    name = name.strip.upcase.split('.').join
+    if name =~ / /
+      split_name = name.split
+      name = "#{split_name[0]}%#{split_name[-1]}"
+    else
+      name = '%'+name+'%'
+    end
+    Evaluation.find(:all, :conditions => ["instructor_name LIKE ?", name], *options)
+  end
+  
+  def self.paginate_by_instructor_name(name, options = {})
+    name = name.strip.upcase.split('.').join
+    if name =~ / /
+      split_name = name.split
+      name = "#{split_name[0]}%#{split_name[-1]}"
+    else
+      name = '%'+name+'%'
+    end
+    Evaluation.paginate(options.merge(:conditions => ["instructor_name LIKE ?", name]))
   end
   
   protected

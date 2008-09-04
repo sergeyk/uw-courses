@@ -73,3 +73,10 @@ end
 require 'Float'
 
 require "will_paginate"
+
+# monkey-patching Array to construct hashes out of one easily
+class Array
+  def to_h(default=nil)
+    Hash[ *inject([]) { |a, value| a.push value, default || yield(value) } ]
+  end
+end

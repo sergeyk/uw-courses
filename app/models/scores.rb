@@ -8,6 +8,8 @@ class Scores < Hash
   COURSE_KEYS = [:whole, :content, :learned]
   GRADING = [:grading]
   
+  KEY_SETS = [ALL_KEYS, INSTRUCTOR_KEYS, COURSE_KEYS, GRADING]
+  
   # Convert a hash to scores
   def initialize(scores_hash=nil)
     if scores_hash

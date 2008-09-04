@@ -10,11 +10,13 @@ class InstructorsController < ApplicationController
   def show
     @instructor = Instructor.from_param(params[:id])
     
-    @evaluations = @instructor.evaluations
+    @num_evaluations = @instructor.evaluations.size
     @average_overall_rating = @instructor.average_overall_rating
     @average_instructor_specific_rating = @instructor.average_instructor_specific_rating
     @average_course_specific_rating = @instructor.average_course_specific_rating
     @average_grading_rating = @instructor.average_grading_rating
+    
+    @evaluations = Instructor.paginated_evaluations(@instructor, params[:page])
   end
   
 end
