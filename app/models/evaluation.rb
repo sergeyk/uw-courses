@@ -22,6 +22,7 @@ class Evaluation < AbstractCourse
   # Compile-time caching
   ###
   SIZE = Evaluation.find(:all).size
+  ALL_DEPARTMENTS = Evaluation.find(:all, :select => 'dept_abbrev', :order => 'dept_abbrev ASC').map { |e| e.dept }
   
   # TODO: spec out
   def overall_rating

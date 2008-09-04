@@ -3,7 +3,9 @@ class CourseTitle
   include AverageRatingsModule, ParamHyphenation
   
   def evaluations
-    Evaluation.find(:all, :conditions => ["dept_abbrev = ? AND number = ?", @dept_abbrev, @number])
+    Evaluation.paginate(:per_page => ParamHyphenation::PAGE_SIZE, :page => 1,
+      :conditions => ["dept_abbrev = ? AND number = ?", @dept_abbrev, @number],
+      :order => 'dept_abbrev, number ASC')
   end
   
   def initialize(dept_abbrev, number)

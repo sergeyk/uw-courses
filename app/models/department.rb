@@ -3,8 +3,8 @@ class Department
   
   attr_reader :abbrev
 
-  def initialize(dept_abbreviation)
-    @abbrev = dept_abbreviation
+  def initialize(dept_abbrev)
+    @abbrev = dept_abbrev
   end
   
   def evaluations

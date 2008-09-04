@@ -1,4 +1,8 @@
 #department-page.center
   %h2= "Statistics for the #{@department.human_name} department"
   = render :partial => "evaluations/average_ratings"
-  = link_to "See all evaluations for this department", department_evaluations_path(@department)
+  .evaluations.span-20
+    - unless @evaluations
+      %p No evaluations on record.
+    - else
+      = render(:partial => 'evaluations/evaluations')
