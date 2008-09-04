@@ -3,21 +3,26 @@ class CourseTitle
   include AverageRatingsModule, ParamHyphenation
   
   # TODO: this feels error-prone
-  EVALUATIONS = Evaluation::ALL_COURSE_TITLES.to_h do |course_title|
+  ALL_COURSE_TITLES = Evaluation.find(:all, :select => 'dept_abbrev, number',
+    :group => 'dept_abbrev, number', :order => 'dept_abbrev, number ASC').map { |e| "#{e.dept_abbrev} #{e.number}" }
+  
+  EVALUATIONS = ALL_COURSE_TITLES.to_h do |course_title|
     match = course_title.match(/([A-z| ]+)([0-9]+)/)
     dept_abbrev, number = match[1].strip.upcase, match[2].strip
     Evaluation.find(:all, :order => 'dept_abbrev, number ASC',
       :conditions => ["dept_abbrev = ? AND number = ?", dept_abbrev, number])
   end
-  RATINGS = Evaluation::ALL_COURSE_TITLES.to_h do |course_title|
+  
+  RATINGS = ALL_COURSE_TITLES.to_h do |course_title|
     evaluations = EVALUATIONS[course_title]
     Scores::KEY_SETS.to_h do |key_set|
       Evaluation.average_rating(evaluations, key_set)
     end
   end
   
+  
   def self.paginated_evaluations(course_title, page)
-    Evaluation.paginate(:per_page => ApplicationController::PAGE_SIZE, :page => page,
+    Evaluation.paginate(:per_page => ApplicationController::PAGINATE_SIZE, :page => page,
       :conditions => ["dept_abbrev = ? AND number = ?", course_title.dept_abbrev, course_title.number],
       :order => 'dept_abbrev, number ASC')
   end
@@ -36,7 +41,7 @@ class CourseTitle
   # Returns a will_paginate collection of Evaluations
   def self.search(query, page)
     if query.blank?
-      return Evaluation.paginate(:per_page => ApplicationController::PAGE_SIZE, :page => page,
+      return Evaluation.paginate(:per_page => ApplicationController::PAGINATE_SIZE, :page => page,
         :select => 'dept_abbrev, number', :group => 'dept_abbrev, number',
         :order => 'dept_abbrev, number ASC')
     end
@@ -44,7 +49,7 @@ class CourseTitle
     return nil unless match = query.match(/([A-z| ]+)([0-9]+)/) and match.size == 3
     dept_abbrev, number = match[1].strip.upcase, match[2].strip
     
-    evaluations = Evaluation.paginate(:per_page => ApplicationController::PAGE_SIZE, :page => page,
+    evaluations = Evaluation.paginate(:per_page => ApplicationController::PAGINATE_SIZE, :page => page,
       :conditions => ["dept_abbrev = ? AND number = ?", dept_abbrev, number],
       :group => 'dept_abbrev, number', :order => 'dept_abbrev, number ASC')
       

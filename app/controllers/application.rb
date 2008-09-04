@@ -15,5 +15,5 @@ class ApplicationController < ActionController::Base
   
   
   # For will_paginate methods
-  PAGE_SIZE = 15
+  PAGINATE_SIZE = 15
 end

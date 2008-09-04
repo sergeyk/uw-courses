@@ -1,10 +1,14 @@
 class Department
   include AverageRatingsModule, ParamHyphenation
   
-  EVALUATIONS = Evaluation::ALL_DEPARTMENTS.to_h do |dept_abbrev|
+  ALL_DEPARTMENTS = Evaluation.find(:all, :select => 'dept_abbrev',
+    :group => 'dept_abbrev', :order => 'dept_abbrev ASC').map { |e| e.dept_abbrev }
+  
+  EVALUATIONS = ALL_DEPARTMENTS.to_h do |dept_abbrev|
     Evaluation.find_all_by_dept_abbrev(dept_abbrev)
   end
-  RATINGS = Evaluation::ALL_DEPARTMENTS.to_h do |dept_abbrev|
+  
+  RATINGS = ALL_DEPARTMENTS.to_h do |dept_abbrev|
     evaluations = EVALUATIONS[dept_abbrev]
     Scores::KEY_SETS.to_h do |key_set|
       Evaluation.average_rating(evaluations, key_set)
@@ -13,7 +17,7 @@ class Department
   
   def self.paginated_evaluations(dept, page)
     Evaluation.paginate_by_dept_abbrev(dept.abbrev,
-      :page => page, :per_page => ApplicationController::PAGE_SIZE,
+      :page => page, :per_page => ApplicationController::PAGINATE_SIZE,
       :order => 'dept_abbrev ASC')
   end
   

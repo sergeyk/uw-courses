@@ -24,11 +24,6 @@ class Evaluation < AbstractCourse
   # constants have finished loading. I feel like some metaprogramming can solve all this.
   ###
   SIZE = Evaluation.find(:all).size
-  ALL_DEPARTMENTS = Evaluation.find(:all, :select => 'dept_abbrev', :group => 'dept_abbrev', :order => 'dept_abbrev ASC').map { |e| e.dept_abbrev }
-  ALL_INSTRUCTORS = Evaluation.find(:all, :select => 'instructor_name', :group => 'instructor_name', :order => 'instructor_name ASC').map { |e| e.instructor_name }
-  ALL_COURSE_TITLES = Evaluation.find(:all, :select => 'dept_abbrev, number', :group => 'dept_abbrev, number', :order => 'dept_abbrev, number ASC').map { |e| "#{e.dept_abbrev} #{e.number}" }
-  
-
   
   # TODO: spec out
   def overall_rating

@@ -15,7 +15,7 @@ class EvaluationsController < ApplicationController
       @parent_name = @course.human_name
       @evaluations = @course.evaluations
     else
-      @evaluations = Evaluation.paginate(:per_page => PAGE_SIZE, :page => params[:page],
+      @evaluations = Evaluation.paginate(:per_page => PAGINATE_SIZE, :page => params[:page],
         :order => "dept_abbrev, number, instructor_name ASC")
     end
 

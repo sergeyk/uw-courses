@@ -1,6 +1,6 @@
 class DepartmentsController < ApplicationController
   def index
-    @departments = Evaluation::ALL_DEPARTMENTS.map { |x| Department.new(x) }
+    @departments = Department::ALL_DEPARTMENTS.map { |x| Department.new(x) }
   end
   
   def show

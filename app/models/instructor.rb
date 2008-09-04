@@ -2,10 +2,14 @@
 class Instructor
   include AverageRatingsModule, ParamHyphenation
   
-  EVALUATIONS = Evaluation::ALL_INSTRUCTORS.to_h do |instructor_name|
+  ALL_INSTRUCTORS = Evaluation.find(:all, :select => 'instructor_name',
+    :group => 'instructor_name', :order => 'instructor_name ASC').map { |e| e.instructor_name }
+    
+  EVALUATIONS = ALL_INSTRUCTORS.to_h do |instructor_name|
     Evaluation.find_all_by_instructor_name(instructor_name)
   end
-  RATINGS = Evaluation::ALL_INSTRUCTORS.to_h do |instructor_name|
+  
+  RATINGS = ALL_INSTRUCTORS.to_h do |instructor_name|
     evaluations = EVALUATIONS[instructor_name]
     Scores::KEY_SETS.to_h do |key_set|
       Evaluation.average_rating(evaluations, key_set)
@@ -14,7 +18,7 @@ class Instructor
   
   def self.paginated_evaluations(instructor, page)
     Evaluation.paginate_by_instructor_name(instructor.name,
-      :page => page, :per_page => ApplicationController::PAGE_SIZE,
+      :page => page, :per_page => ApplicationController::PAGINATE_SIZE,
       :order => 'instructor_name ASC')
   end
   
@@ -35,11 +39,11 @@ class Instructor
   def self.search(query, page)
     page = (page.to_i > 0) ? page.to_i : 1
     if query.blank?
-      evaluations = Evaluation.paginate(:per_page => ApplicationController::PAGE_SIZE, :page => page,
+      evaluations = Evaluation.paginate(:per_page => ApplicationController::PAGINATE_SIZE, :page => page,
       :group => 'instructor_name', :select => 'instructor_name', :order => 'instructor_name ASC')
     else
       evaluations = Evaluation.paginate_by_instructor_name(query,
-        :per_page => ApplicationController::PAGE_SIZE, :page => page,
+        :per_page => ApplicationController::PAGINATE_SIZE, :page => page,
         :group => 'instructor_name', :select => 'instructor_name', :order => 'instructor_name ASC')
     end
     (evaluations.size > 0) ? evaluations : nil

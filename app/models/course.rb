@@ -1,6 +1,4 @@
-class Course < AbstractCourse  
-  acts_as_ferret :fields => [:instructor_name]
-
+class Course < AbstractCourse
   before_validation :process_names
   validates_format_of :instructor_last_name, :instructor_first_and_middle_names, :with => self.name_validation_regex, :allow_nil => true
   validates_presence_of :section, :sln
