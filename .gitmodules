@@ -2,8 +2,11 @@
   path = vendor/rails
 	url = git://github.com/rails/rails.git
 [submodule "vendor/plugins/rspec"]
-  path = vendor/plugins/rspec
-  url = git://github.com/dchelimsky/rspec.git
+	path = vendor/plugins/rspec
+	url = git://github.com/dchelimsky/rspec.git
 [submodule "vendor/plugins/rspec-rails"]
   path = vendor/plugins/rspec-rails
   url = git://github.com/dchelimsky/rspec-rails.git
+[submodule "vendorpluginsrspec-rails"]
+	path = vendorpluginsrspec-rails
+	url = git://github.com/dchelimsky/rspec-rails.git
