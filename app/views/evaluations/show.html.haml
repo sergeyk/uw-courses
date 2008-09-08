@@ -2,7 +2,9 @@
   %h2.instructor= link_to @evaluation.human_instructor_name, instructor_path(@evaluation.instructor)
   %p
     #title-quarter
-      = @evaluation.human_title
+      = link_to @evaluation.department.abbrev, department_path(@evaluation.department)
+       
+      = link_to @evaluation.course_title.number, course_title_path(@evaluation.course_title)
       |
       = @evaluation.human_quarter
     #enrolled

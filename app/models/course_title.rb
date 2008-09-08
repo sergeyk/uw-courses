@@ -1,81 +1,42 @@
 # "CSE 142," or "PSYCH 303".
-class CourseTitle
-  include AverageRatingsModule, ParamHyphenation
+class CourseTitle < HasManyEvaluations
+  has_many :evaluations
+  belongs_to :department
   
-  # TODO: this feels error-prone
-  ALL_COURSE_TITLES = Evaluation.find(:all, :select => 'dept_abbrev, number',
-    :group => 'dept_abbrev, number', :order => 'dept_abbrev, number ASC').map { |e| "#{e.dept_abbrev} #{e.number}" }
+  ### VALIDATIONS
+  def process_number; self.number = number.to_i if number; end
+  before_validation :process_number
+  validates_presence_of :department, :number
+  validates_associated :department
+  validates_numericality_of :number, :greater_than => 99, :less_than => 999
+  # NOTE: this also catches words converted to numbers, e.g. "jerry" => 0
   
-  EVALUATIONS = ALL_COURSE_TITLES.to_h do |course_title|
-    match = course_title.match(/([A-z| ]+)([0-9]+)/)
-    dept_abbrev, number = match[1].strip.upcase, match[2].strip
-    Evaluation.find(:all, :order => 'dept_abbrev, number ASC',
-      :conditions => ["dept_abbrev = ? AND number = ?", dept_abbrev, number])
+  def human_name
+    "#{department.abbrev} #{number}"
   end
   
-  RATINGS = ALL_COURSE_TITLES.to_h do |course_title|
-    evaluations = EVALUATIONS[course_title]
-    Scores::KEY_SETS.to_h do |key_set|
-      Evaluation.average_rating(evaluations, key_set)
-    end
-  end
-  
-  
-  def self.paginated_evaluations(course_title, page)
-    Evaluation.paginate(:per_page => ApplicationController::PAGINATE_SIZE, :page => page,
-      :conditions => ["dept_abbrev = ? AND number = ?", course_title.dept_abbrev, course_title.number],
-      :order => 'dept_abbrev, number ASC')
-  end
-  
-  
-  def human_name; "#{@dept_abbrev} #{@number}"; end
-  def hash_name; human_name; end
-  attr_reader :dept_abbrev, :number
-  
-  def initialize(dept_abbrev, number)
-    @dept_abbrev = dept_abbrev
-    @number = number
-  end
-  
-  
-  # Returns a will_paginate collection of Evaluations
+  # Takes a query string and page number
+  # Returns a will_paginate collection of evaluations for a CourseTitle that matches the query, or nil
   def self.search(query, page)
     if query.blank?
-      return Evaluation.paginate(:per_page => ApplicationController::PAGINATE_SIZE, :page => page,
-        :select => 'dept_abbrev, number', :group => 'dept_abbrev, number',
-        :order => 'dept_abbrev, number ASC')
+      return CourseTitle.paginate(:page => page,
+        :include => [:department], :order => "departments.abbrev, number ASC")
     end
-      
-    return nil unless match = query.match(/([A-z| ]+)([0-9]+)/) and match.size == 3
-    dept_abbrev, number = match[1].strip.upcase, match[2].strip
     
-    evaluations = Evaluation.paginate(:per_page => ApplicationController::PAGINATE_SIZE, :page => page,
-      :conditions => ["dept_abbrev = ? AND number = ?", dept_abbrev, number],
-      :group => 'dept_abbrev, number', :order => 'dept_abbrev, number ASC')
-      
-    return (evaluations.size > 0) ? evaluations : nil
+    course_title = self.find_with_query(query)
+    course_title ? [course_title] : nil
   end
   
+  def self.find_with_query(query)
+    match = query.match(/([A-z| ]+)([0-9]+)/)
+    return nil unless match.size == 3
+    dept = Department.find_by_abbrev(match[1].strip.upcase)
+    number = match[2].strip
+    course_title = CourseTitle.find_by_department_id_and_number(dept, number)
+  end
   
-  ### PARAM CONVERSION
+  ### PARAMS
   def to_param
-    hyphenate(human_name)
-  end
-  
-  def self.from_param(param)
-    dehyphenated = ParamHyphenation.dehyphenate(param)
-    match = dehyphenated.match(/([A-z| ]+)([0-9]+)/)
-    raise "Improperly formatted course title param" unless match.size == 3
-    dept_abbrev, number = match[1].strip.upcase, match[2].strip
-    CourseTitle.new(dept_abbrev, number)
-  end
-  
-  
-  ### RATINGS
-  # TODO: DRY: in Instructor and CourseTitle also
-  def evaluations; EVALUATIONS[hash_name]; end
-  def average_overall_rating; RATINGS[hash_name][Scores::ALL_KEYS]; end
-  def average_instructor_specific_rating; RATINGS[hash_name][Scores::INSTRUCTOR_KEYS]; end
-  def average_course_specific_rating; RATINGS[hash_name][Scores::COURSE_KEYS]; end
-  def average_grading_rating; RATINGS[hash_name][Scores::GRADING]; end
+    "#{id}-#{ParamEncode.encode(human_name)}"
+  end  
 end

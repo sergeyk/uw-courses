@@ -11,30 +11,63 @@
 
 ActiveRecord::Schema.define(:version => 20080809194844) do
 
-  create_table "courses", :force => true do |t|
-    t.string   "quarter"
-    t.string   "dept_abbrev"
-    t.string   "number"
-    t.string   "section"
-    t.string   "sln"
-    t.string   "title"
-    t.string   "instructor_last_name"
-    t.string   "instructor_first_and_middle_names"
-    t.string   "times"
+  create_table "course_titles", :force => true do |t|
+    t.integer  "department_id"
+    t.string   "department_name"
+    t.integer  "number"
+    t.integer  "number_of_evaluations"
+    t.float    "average_overall_rating"
+    t.float    "average_course_specific_rating"
+    t.float    "average_instructor_specific_rating"
+    t.float    "average_grading_rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "departments", :force => true do |t|
+    t.string   "abbrev"
+    t.string   "full_name"
+    t.integer  "number_of_evaluations"
+    t.float    "average_overall_rating"
+    t.float    "average_course_specific_rating"
+    t.float    "average_instructor_specific_rating"
+    t.float    "average_grading_rating"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "evaluations", :force => true do |t|
-    t.string   "quarter"
-    t.string   "dept_abbrev"
-    t.string   "number"
+    t.integer  "quarter_id"
+    t.integer  "department_id"
+    t.integer  "course_title_id"
+    t.integer  "instructor_id"
     t.string   "section"
     t.string   "course_type"
     t.integer  "surveyed"
     t.integer  "enrolled"
-    t.string   "instructor_name"
     t.text     "scores"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "instructors", :force => true do |t|
+    t.string   "full_name"
+    t.integer  "number_of_evaluations"
+    t.float    "average_overall_rating"
+    t.float    "average_course_specific_rating"
+    t.float    "average_instructor_specific_rating"
+    t.float    "average_grading_rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "quarters", :force => true do |t|
+    t.string   "name"
+    t.integer  "number_of_evaluations"
+    t.float    "average_overall_rating"
+    t.float    "average_course_specific_rating"
+    t.float    "average_instructor_specific_rating"
+    t.float    "average_grading_rating"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

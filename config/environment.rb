@@ -69,9 +69,11 @@ Rails::Initializer.run do |config|
 end
 
 # monkey-patching Float
-require 'Float'
-
-require "will_paginate"
+class Float
+  def round_to(x)
+    (self * 10**x).round.to_f / 10**x
+  end
+end
 
 # monkey-patching Array to construct hashes out of one easily
 class Array

@@ -1,0 +1,19 @@
+%table
+  %tr.header-row
+    %td{:rowspan => '2'} Course title
+    %td{:rowspan => '2'} Evaluations on file
+    %td{:colspan => '4'} Average ratings
+  %tr.header-row
+    %td Overall
+    %td Instructor-specific
+    %td Course-specific
+    %td Grading
+  - @course_titles.each do |course_title|
+    %tr{:class => cycle('even-row','odd-row')}
+      %td= link_to course_title.human_name, course_title_path(course_title)
+      %td= course_title.number_of_evaluations
+      %td= course_title.average_overall_rating or "--"
+      %td= course_title.average_instructor_specific_rating or "--"
+      %td= course_title.average_course_specific_rating or "--"
+      %td= course_title.average_grading_rating or "--"
+%p= will_paginate(@course_titles) if @course_titles.size > 1

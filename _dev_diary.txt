@@ -96,4 +96,18 @@ Woo! App up and running on uwcourses.com. Now must fix up locally, push, and pop
 --------------------------------------------------------------------------------
 Thu Sep 04 03:51:07 -0700 2008
 Somehow these things always take way longer than I expect. Did major redesign to use class caching of everything: should be blazing fast even with 30K evals now. In the process, had complete disregard for good style, DRYness, and ruby tricks. MUST go through and clean up later.
+--------------------------------------------------------------------------------
+Thu Sep 04 13:58:30 -0700 2008
+Tonight I will have to move caching to the database: it is far too slow in memory. I guess I should have known, with > 30K records.
+--------------------------------------------------------------------------------
+Fri Sep 05 00:52:26 -0700 2008
+So begins the massive redesign! Every table is still going to live in the old migrations file, just because I don't like migrations. Course functionality is staying, but is not at all tested or a focus of development. In fact, abstractCourse is going to be empty: everything goes into Evaluation for now.
+
+This is pretty much a huge rewrite that's almost from scratch. It will take far less time, however, because I already know how to do all the controller stuff and have the views all ready. For now, I'm not providing columns for average evaluations in the database. Hopefully SQL joining columns is fast enough; storing in db can always be added.
+--------------------------------------------------------------------------------
+Sun Sep 07 15:12:18 -0700 2008
+Well, I've been working on this rewrite a while. All specs pass. About to start testing it with script/server.
+--------------------------------------------------------------------------------
+Mon Sep 08 04:02:58 -0700 2008
+Dear Lord, I've put in a lot of work today, and now all specs pass, everything is dang fast, and I'm getting ready to deploy. The changes are too numerous to recount, but among other things, I've switched seeding mechanism; added HasManyEvaluations abstract class (in place of AverageRatingsModule); its extending classes store their average evaluation ratings in the database and only update them when the database has more evaluations for them then they think; rewrote instructor name finding to be robust and paginate.
 puts "-"*80; puts Time.new

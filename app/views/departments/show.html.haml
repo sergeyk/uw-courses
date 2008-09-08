@@ -1,5 +1,5 @@
 #department-page.center
-  %h2= "Statistics for the #{@department.human_name} department"
+  %h2= "Statistics for the #{@department.abbrev} department"
   = render :partial => "evaluations/average_ratings"
   .evaluations.span-20
     - unless @evaluations

@@ -1,6 +1,0 @@
-.results
-  - unless @evaluations
-    %p No results found.
-  - else  
-    = render(:partial => 'evaluations/evaluations') if @evaluations
-    %p= will_paginate(@evaluations) if @evaluations

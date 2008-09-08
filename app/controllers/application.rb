@@ -12,8 +12,4 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
-  
-  
-  # For will_paginate methods
-  PAGINATE_SIZE = 15
 end

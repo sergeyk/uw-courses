@@ -1,20 +1,17 @@
 class CourseTitlesController < ApplicationController
   def index
-    @paginated_courses = CourseTitle.search(params[:search], params[:page])
-    @courses = @paginated_courses ?
-      @paginated_courses.map { |e| CourseTitle.new(e.dept_abbrev, e.number) } :
-      nil
+    @course_titles = CourseTitle.search(params[:search], params[:page])
   end
 
   def show
-    @course = CourseTitle.from_param(params[:id])
+    @course_title = CourseTitle.find(params[:id])
     
-    @num_evaluations = @course.evaluations.size
-    @average_overall_rating = @course.average_overall_rating
-    @average_instructor_specific_rating = @course.average_instructor_specific_rating
-    @average_course_specific_rating = @course.average_course_specific_rating
-    @average_grading_rating = @course.average_grading_rating
+    @num_evaluations = @course_title.number_of_evaluations
+    @average_overall_rating = @course_title.average_overall_rating
+    @average_instructor_specific_rating = @course_title.average_instructor_specific_rating
+    @average_course_specific_rating = @course_title.average_course_specific_rating
+    @average_grading_rating = @course_title.average_grading_rating
     
-    @evaluations = CourseTitle.paginated_evaluations(@course, params[:page])
+    @evaluations = @course_title.paginated_evaluations(params[:page])
   end
 end

@@ -16,11 +16,13 @@
         %td
           = evaluation.human_instructor_name
           = " (#{link_to "see all", instructor_path(evaluation.instructor)})"
-        %td= "#{link_to("#{evaluation.dept_abbrev}", department_path(evaluation.dept_abbrev))} #{evaluation.human_number}"
-        %td= evaluation.human_quarter
+        %td
+          = link_to "#{evaluation.department.abbrev}", department_path(evaluation.department)
+          = link_to "#{evaluation.course_title.number}", course_title_path(evaluation.course_title)
+        %td= evaluation.quarter.human_name
         %td= evaluation.overall_rating
         %td= evaluation.instructor_specific_rating
         %td= evaluation.course_specific_rating
         %td= evaluation.grading_rating ? evaluation.grading_rating : "---"
         %td= link_to 'Show', evaluation
-  %p= will_paginate(@evaluations)
+  %p= will_paginate(@evaluations) if @evaluations

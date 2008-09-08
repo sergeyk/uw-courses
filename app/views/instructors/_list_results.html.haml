@@ -11,9 +11,9 @@
   - @instructors.each do |instructor|
     %tr{:class => cycle('even-row','odd-row')}
       %td= link_to instructor.human_name, instructor_path(instructor)
-      %td= instructor.evaluations.size
+      %td= instructor.number_of_evaluations
       %td= instructor.average_overall_rating or "--"
       %td= instructor.average_instructor_specific_rating or "--"
       %td= instructor.average_course_specific_rating or "--"
       %td= instructor.average_grading_rating or "--"
-%p= will_paginate(@paginated_instructors)
+%p= will_paginate(@instructors) if @instructors

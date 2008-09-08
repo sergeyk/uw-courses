@@ -12,9 +12,10 @@
       %td Grading
     - @departments.each do |dept|
       %tr{:class => cycle('even-row','odd-row')}
-        %td= link_to dept.human_name, department_path(dept)
-        %td= dept.evaluations.size
+        %td= link_to dept.abbrev, department_path(dept)
+        %td= dept.number_of_evaluations
         %td= dept.average_overall_rating or "--"
         %td= dept.average_instructor_specific_rating or "--"
         %td= dept.average_course_specific_rating or "--"
         %td= dept.average_grading_rating or "--"
+  = will_paginate(@departments) if @departments

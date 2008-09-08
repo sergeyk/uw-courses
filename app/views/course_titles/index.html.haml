@@ -2,7 +2,7 @@
   .search-box.span-10.prepend-5.append-5
     = render :partial => 'searches/courses_form'
   .results.span-20
-    - unless @courses
+    - unless @course_titles
       %p No results found.
     - else  
-      = render(:partial => 'list')
+      = render(:partial => 'list_results')
