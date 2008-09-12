@@ -66,11 +66,11 @@ Today TODOs:
  V* work on search functionality
  V* work on pagination
  V* search should return not evaluations but Instructors and CourseTitles
- * work on comparisons to overall averages functionality
- * get rails working on Joyent, and deploy site there.
+ X* get rails working on Joyent, and deploy site there.
 Also, implemented nicer-looking URLs through use of to_param. TODO: spec to_param
  
 Later TODOs:
+ * work on comparisons to overall averages functionality
  * refactor specs for the average ratings module.
  * go through everything in models and spec it out--shouldn't be much
  * spec out controller stuff
@@ -110,4 +110,13 @@ Well, I've been working on this rewrite a while. All specs pass. About to start 
 --------------------------------------------------------------------------------
 Mon Sep 08 04:02:58 -0700 2008
 Dear Lord, I've put in a lot of work today, and now all specs pass, everything is dang fast, and I'm getting ready to deploy. The changes are too numerous to recount, but among other things, I've switched seeding mechanism; added HasManyEvaluations abstract class (in place of AverageRatingsModule); its extending classes store their average evaluation ratings in the database and only update them when the database has more evaluations for them then they think; rewrote instructor name finding to be robust and paginate.
+--------------------------------------------------------------------------------
+Fri Sep 12 12:34:42 -0700 2008
+Spending a little time cleaning up, putting in AdSense, improving. Not much, but here is a list for further work.
+Ideas and TODOs:
+ * comparisons to overall averages
+ * sort by quarter
+ * spec out controller stuff
+ * better statistics, like histograms and percentiles (this instructor is in the 90th percentile for his department, 40th percentile for this course.)
+ * sortable columns: see classes sorted by grading rating
 puts "-"*80; puts Time.new

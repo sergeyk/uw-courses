@@ -16,7 +16,22 @@
       #main.span-20.prepend-2.append-2
         %p.flash= flash[:notice]
         = yield
-      %hr
+      
+        %hr
+      .span-24.center
+        %p
+          <script type="text/javascript"><!--
+          google_ad_client = "pub-3325828397062003";
+          /* 728x90, created 9/12/08 */
+          google_ad_slot = "3717607161";
+          google_ad_width = 728;
+          google_ad_height = 90;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
+        %hr
       #footer.span-24.center
         %p
           = link_to "Search Instructors", instructors_path
@@ -26,7 +41,7 @@
           = link_to "Search Courses", course_titles_path
         %hr
       .span-12.border.left
-        = mail_to "uwevaluations@gmail.com", "contact me", :encode => 'javascript'
+        = mail_to "uwcourses@gmail.com", "contact", :encode => 'javascript'
       .span-12.last.right
         = "#{Evaluation::SIZE} evaluations"
     <script type="text/javascript">

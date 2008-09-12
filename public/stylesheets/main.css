@@ -68,6 +68,10 @@ td {
   border-right: 1px solid black;
 }
 
+td .median {
+  font-weight: bold;
+}
+
 .header-row {
   background: #ffbfdc;
   font-weight: bold;

@@ -1,8 +1,11 @@
 - form_tag(course_titles_path, :method => 'get') do
   %fieldset
     %legend Course search
-    %p You'll have to enter both the department and number of a course
-    - value = params[:search] != nil ? params[:search] : "PSYCH 305"
+    %p
+      You'll have to enter both the department and number of a course
+      %br
+      (e.g. "PSYCH 305")
+    - value = params[:search]
     = text_field_tag(:search, value)
     = submit_tag('Search', :name => nil, :class => 'button')
     

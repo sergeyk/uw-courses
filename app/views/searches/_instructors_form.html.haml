@@ -1,8 +1,11 @@
 - form_tag(instructors_path, :method => 'get') do
   %fieldset
     %legend Instructor Search
-    %p Enter the name of an instructor: full, or just the first or last!
-    - value = params[:search] != nil ? params[:search] : "Stuart Reges"
+    %p
+      The full name is best, but any partial name will do.
+      %br
+      (e.g. "Stuart Reges", "Reges", or "Stu")
+    - value = params[:search]
     = text_field_tag(:search, value)
     = submit_tag('Search', :name => nil, :class => 'button')
     
