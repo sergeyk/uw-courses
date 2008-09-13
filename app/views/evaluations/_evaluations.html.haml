@@ -2,27 +2,40 @@
   %table
     %tr.header-row
       %td{:rowspan => '2'} Instructor Name
-      %td{:rowspan => '2'} Course
+      %td{:rowspan => '2'} Course Title
       %td{:rowspan => '2'} Quarter
       %td{:colspan => '4'} Average Ratings
+      %td{:colspan => '2'} Better than overall average for...
       %td{:rowspan => '2'} View
     %tr.header-row
       %td Overall
       %td Instructor-specific
       %td Course-specific
       %td Grading
+      %td Course
+      %td Instructor
     - @evaluations.each do |evaluation|
       %tr{:class => cycle('even-row','odd-row')}
         %td
-          = evaluation.human_instructor_name
-          = " (#{link_to "see all", instructor_path(evaluation.instructor)})"
+          = link_to "#{evaluation.human_instructor_name}", instructor_path(evaluation.instructor)
         %td
           = link_to "#{evaluation.department.abbrev}", department_path(evaluation.department)
           = link_to "#{evaluation.course_title.number}", course_title_path(evaluation.course_title)
+          = evaluation.section if evaluation.section
         %td= evaluation.quarter.human_name
         %td= evaluation.overall_rating
         %td= evaluation.instructor_specific_rating
         %td= evaluation.course_specific_rating
         %td= evaluation.grading_rating ? evaluation.grading_rating : "---"
+        %td
+          - if (evaluation.overall_rating > evaluation.course_title.average_overall_rating)
+            = image_tag "checkmark.gif"
+          - else
+            = image_tag "x-red.gif"
+        %td
+          -if (evaluation.overall_rating > evaluation.instructor.average_overall_rating)
+            = image_tag "checkmark.gif"
+          - else
+            = image_tag "x-red.gif"
         %td= link_to 'Show', evaluation
   %p= will_paginate(@evaluations) if @evaluations

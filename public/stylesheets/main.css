@@ -74,7 +74,7 @@ td .median {
 
 .header-row {
   background: #ffbfdc;
-  font-weight: bold;
+  font-family: Times, "Times New Roman", serif;
 }
 
 .even-row {

@@ -1,7 +1,7 @@
 #course_title-page.center
   %h2= "Statistics for #{@course_title.human_name}"
   = render :partial => "evaluations/average_ratings"
-  .evaluations.span-20
+  .evaluations
     - unless @evaluations
       %p No evaluations on record.
     - else

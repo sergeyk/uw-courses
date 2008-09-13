@@ -14,7 +14,7 @@ class HasManyEvaluations < ActiveRecord::Base
   def paginated_evaluations(page)
     @evaluations.paginate(:page => page,
       :include => [:quarter, :department, :course_title, :instructor],
-      :order => "departments.abbrev, course_titles.number, quarters.name ASC")
+      :order => "instructors.full_name, departments.abbrev, course_titles.number, quarters.name ASC")
   end
   
   # If there are more or less evaluations in the database than we think, update everything

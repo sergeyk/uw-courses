@@ -29,7 +29,7 @@ class CourseTitle < HasManyEvaluations
   
   def self.find_with_query(query)
     match = query.match(/([A-z| ]+)([0-9]+)/)
-    return nil unless match.size == 3
+    return nil unless match and match.size == 3
     dept = Department.find_by_abbrev(match[1].strip.upcase)
     number = match[2].strip
     course_title = CourseTitle.find_by_department_id_and_number(dept, number)
