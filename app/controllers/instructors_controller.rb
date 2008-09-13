@@ -5,15 +5,9 @@ class InstructorsController < ApplicationController
   end
   
   def show
-    @instructor = Instructor.find(params[:id])
-    
-    @num_evaluations = @instructor.number_of_evaluations
-    @average_overall_rating = @instructor.average_overall_rating
-    @average_instructor_specific_rating = @instructor.average_instructor_specific_rating
-    @average_course_specific_rating = @instructor.average_course_specific_rating
-    @average_grading_rating = @instructor.average_grading_rating
-    
-    @evaluations = @instructor.paginated_evaluations(params[:page])
+    @hme = Instructor.find(params[:id])
+    @evaluations = @hme.paginated_evaluations(params[:page])
+    render :template => "has_many_evaluations/show"
   end
   
 end

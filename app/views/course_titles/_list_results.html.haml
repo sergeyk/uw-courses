@@ -1,8 +1,9 @@
 %table
   %tr.header-row
     %td{:rowspan => '2'} Course title
-    %td{:rowspan => '2'} Evaluations on file
+    %td{:rowspan => '2'} Evaluations
     %td{:colspan => '4'} Average ratings
+    %td{:rowspan => '2'} Better than average for department?
   %tr.header-row
     %td Overall
     %td Instructor-specific
@@ -16,4 +17,9 @@
       %td= course_title.average_instructor_specific_rating or "--"
       %td= course_title.average_course_specific_rating or "--"
       %td= course_title.average_grading_rating or "--"
+      %td
+        - if course_title.average_overall_rating > course_title.department.average_overall_rating
+          = image_tag "checkmark.gif"
+        - else
+          = image_tag "x-red.gif"
 %p= will_paginate(@course_titles) if @course_titles.size > 1

@@ -38,4 +38,4 @@
           - else
             = image_tag "x-red.gif"
         %td= link_to 'Show', evaluation
-  %p= will_paginate(@evaluations) if @evaluations
+  %p= will_paginate(@evaluations) if @evaluations and @evaluations.instance_of? WillPaginate::Collection

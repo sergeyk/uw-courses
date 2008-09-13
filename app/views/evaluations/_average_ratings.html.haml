@@ -1,18 +1,15 @@
-.average-ratings.span-8.prepend-6.append-6
-  %table
+%table
+  %tr.header-row
+    %td{:rowspan => '2'} Evaluations on file
+    %td{:colspan => '4'} Average ratings
+  %tr.header-row
+    %td Overall
+    %td Instructor-specific
+    %td Course-specific
+    %td Grading
     %tr.even-row
-      %td Number of evaluations on file:
-      %td= @num_evaluations
-    %tr.odd-row
-      %td Average overall rating:
-      %td= @average_overall_rating
-    %tr.even-row
-      %td Average instructor-specific rating:
-      %td= @average_instructor_specific_rating
-    %tr.odd-row
-      %td Average course-specific rating:
-      %td= @average_course_specific_rating
-    %tr.even-row
-      %td Average grading rating:
-      %td= @average_grading_rating
-    
+      %td= @hme.number_of_evaluations
+      %td= @hme.average_overall_rating or "--"
+      %td= @hme.average_instructor_specific_rating or "--"
+      %td= @hme.average_course_specific_rating or "--"
+      %td= @hme.average_grading_rating or "--"

@@ -12,7 +12,7 @@ class HasManyEvaluations < ActiveRecord::Base
   def self.per_page; 15; end
   
   def paginated_evaluations(page)
-    @evaluations.paginate(:page => page,
+    evaluations.paginate(:page => page,
       :include => [:quarter, :department, :course_title, :instructor],
       :order => "instructors.full_name, departments.abbrev, course_titles.number, quarters.name ASC")
   end

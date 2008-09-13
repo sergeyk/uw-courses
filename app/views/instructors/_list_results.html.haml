@@ -1,7 +1,7 @@
 %table
   %tr.header-row
     %td{:rowspan => '2'} Name
-    %td{:rowspan => '2'} Evaluations on file
+    %td{:rowspan => '2'} Evaluations
     %td{:colspan => '4'} Average ratings
   %tr.header-row
     %td Overall
@@ -16,4 +16,4 @@
       %td= instructor.average_instructor_specific_rating or "--"
       %td= instructor.average_course_specific_rating or "--"
       %td= instructor.average_grading_rating or "--"
-%p= will_paginate(@instructors) if @instructors
+%p= will_paginate(@instructors) if @instructors.instance_of? WillPaginate::Collection
