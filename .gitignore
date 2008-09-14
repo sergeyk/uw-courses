@@ -6,3 +6,4 @@ doc/api
 doc/app
 index/**/*
 db/*.sqlite3
+public/index.html
