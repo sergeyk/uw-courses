@@ -5,5 +5,23 @@
     - unless @instructors
       %p No results found.
     - else  
-      = render(:partial => 'list_results')
+      %table
+        %tr.header-row
+          %td{:rowspan => '2'} Name
+          %td{:rowspan => '2'} Evaluations
+          %td{:colspan => '4'} Average ratings
+        %tr.header-row
+          %td Overall
+          %td Instructor-specific
+          %td Course-specific
+          %td Grading
+        - @instructors.each do |instructor|
+          %tr{:class => cycle('even-row','odd-row')}
+            %td= link_to instructor.human_name, instructor_path(instructor)
+            %td= instructor.number_of_evaluations
+            %td= instructor.average_overall_rating
+            %td= instructor.average_instructor_specific_rating
+            %td= instructor.average_course_specific_rating
+            %td= (instructor.average_grading_rating != nil) ? instructor.average_grading_rating : "--"
+      %p= will_paginate(@instructors) if @instructors and @instructors.size > 1 and @instructors.instance_of? WillPaginate::Collection
       

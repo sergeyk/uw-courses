@@ -13,7 +13,7 @@
       #header.span-24.center
         %h1 Unofficial University of Washington Evaluations Catalog
       %hr
-      #footer.span-24.center
+      #nav.span-24.center
         %p
           = link_to "Search Instructors", instructors_path
           |
@@ -39,10 +39,11 @@
           src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
           </script>
         %hr
-      .span-12.border.left
-        = mail_to "uwcourses@gmail.com", "contact", :encode => 'javascript'
-      .span-12.last.right
-        = "#{Evaluation::SIZE} evaluations"
+      #footer.span-24
+        .span-12.border.left
+          = mail_to "uwcourses@gmail.com", "contact", :encode => 'javascript'
+        .span-12.last.right
+          = "#{Evaluation::SIZE} evaluations"
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

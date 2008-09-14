@@ -5,4 +5,28 @@
     - unless @course_titles
       %p No results found.
     - else  
-      = render(:partial => 'list_results')
+      %table
+        %tr.header-row
+          %td{:rowspan => '2'} Course title
+          %td{:rowspan => '2'} Evaluations
+          %td{:colspan => '4'} Average ratings
+          %td{:rowspan => '2'} Better than average for department?
+        %tr.header-row
+          %td Overall
+          %td Instructor-specific
+          %td Course-specific
+          %td Grading
+        - @course_titles.each do |course_title|
+          %tr{:class => cycle('even-row','odd-row')}
+            %td= link_to course_title.human_name, course_title_path(course_title)
+            %td= course_title.number_of_evaluations
+            %td= course_title.average_overall_rating
+            %td= course_title.average_instructor_specific_rating
+            %td= course_title.average_course_specific_rating
+            %td= (course_title.average_grading_rating != nil) ? course_title.average_grading_rating : "--"
+            %td
+              - if course_title.average_overall_rating > course_title.department.average_overall_rating
+                = image_tag "checkmark.gif"
+              - else
+                = image_tag "x-red.gif"
+      %p= will_paginate(@course_titles) if @course_titles and @course_titles.size > 1 and @course_titles.instance_of? WillPaginate::Collection
