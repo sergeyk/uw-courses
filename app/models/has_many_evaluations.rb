@@ -12,7 +12,7 @@ class HasManyEvaluations < ActiveRecord::Base
   def self.per_page; 15; end
   
   def paginated_evaluations(page)
-    evaluations.paginate(:page => page,
+    evaluations.paginate(:page => page, :per_page => 15,
       :include => [:quarter, :department, :course_title, :instructor],
       :order => "instructors.full_name, departments.abbrev, course_titles.number, quarters.name ASC")
   end
@@ -36,25 +36,25 @@ class HasManyEvaluations < ActiveRecord::Base
   def average_overall_rating
     self[:average_overall_rating] ||= average_rating(evaluations, Scores::ALL_KEYS)
     save!
-    return self[:average_overall_rating]
+    self[:average_overall_rating]
   end
   
   def average_instructor_specific_rating
     self[:average_instructor_specific_rating] ||= average_rating(evaluations, Scores::INSTRUCTOR_KEYS)
     save!
-    return self[:average_instructor_specific_rating]
+    self[:average_instructor_specific_rating]
   end
   
   def average_course_specific_rating
     self[:average_course_specific_rating] ||= average_rating(evaluations, Scores::COURSE_KEYS)
     save!
-    return self[:average_course_specific_rating]
+    self[:average_course_specific_rating]
   end
   
   def average_grading_rating
     self[:average_grading_rating] ||= average_rating(evaluations, Scores::GRADING)
     save!
-    return self[:average_grading_rating]
+    self[:average_grading_rating]
   end  
   
   # Returns the average rating for the given evaluations and keys rounded to two
