@@ -119,4 +119,10 @@ Ideas and TODOs:
  * spec out controller stuff
  * better statistics, like histograms and percentiles (this instructor is in the 90th percentile for his department, 40th percentile for this course.)
  * sortable columns: see classes sorted by grading rating
+--------------------------------------------------------------------------------
+Sun Oct 26 23:33:38 -0700 2008
+Putting in a little work before writing up the project on my blog and maybe advertising it on cs-ugrads or somewhere. Didn't really do much actually, just started seeding more evals to live site.
+Ideas and TODOs:
+  * Incorporate course names, from UW Time Schedule data probably
+  * Guess which department an instructor belongs to based on her courses
 puts "-"*80; puts Time.new

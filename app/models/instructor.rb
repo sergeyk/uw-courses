@@ -21,6 +21,10 @@ class Instructor < HasManyEvaluations
     "#{full_name.downcase.split.map { |x| x.split('-').map { |y| y.split('\'').map { |z| z.capitalize }.join('\'') }.join('-') }.join(' ')}"
   end
   
+  def departments
+    evaluations.map { |x| x.department }.uniq
+  end
+  
   # Returns a list of instructors that match the query string
   def self.search(query, page)
     if query.blank?

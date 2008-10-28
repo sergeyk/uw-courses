@@ -4,10 +4,12 @@ class InstructorsController < ApplicationController
     @instructors = Instructor.search(params[:search], params[:page])
   end
   
+  # Handled by separate instructors view, unlike CourseTitles and Departments
   def show
-    @hme = Instructor.find(params[:id])
-    @evaluations = @hme.paginated_evaluations(params[:page])
-    render :template => "has_many_evaluations/show"
+    @instructor = Instructor.find(params[:id])
+    @department_abbrevs = @instructor.departments.map { |x| x.abbrev }
+    @evaluations = @instructor.paginated_evaluations(params[:page])
+    
   end
   
 end
