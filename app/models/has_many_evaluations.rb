@@ -9,7 +9,7 @@
 class HasManyEvaluations < ActiveRecord::Base
   self.abstract_class = true
   
-  def self.per_page; 15; end
+  def self.per_page; 10; end
   
   def paginated_evaluations(page)
     evaluations.paginate(:page => page, :per_page => 15,

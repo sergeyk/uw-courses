@@ -28,10 +28,10 @@ class Instructor < HasManyEvaluations
   # Returns a list of instructors that match the query string
   def self.search(query, page)
     if query.blank?
-      return Instructor.paginate(:page => page, :per_page => 15, :order => "full_name ASC")
+      return Instructor.paginate(:page => page, :per_page => 5, :order => "full_name ASC")
     end
     
-    instructors = Instructor.paginate_by_full_name(query, :page => page, :per_page => 15)
+    instructors = Instructor.paginate_by_full_name(query, :page => page, :per_page => 10)
     (instructors and instructors.size > 0) ? instructors : nil
   end
   

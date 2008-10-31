@@ -19,7 +19,7 @@ class CourseTitle < HasManyEvaluations
   # Returns a will_paginate collection of evaluations for a CourseTitle that matches the query, or nil
   def self.search(query, page)
     if query.blank?
-      return CourseTitle.paginate(:page => page, :per_page => 15,
+      return CourseTitle.paginate(:page => page, :per_page => 5,
         :include => [:department], :order => "departments.abbrev, number ASC")
     end
     
