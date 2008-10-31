@@ -7,10 +7,10 @@
     |
     = @evaluation.human_quarter
   %p
-    %span.number_box= @evaluation.surveyed.to_s
+    %span.highlight-box= @evaluation.surveyed.to_s
     surveyed out of
-    %span.number_box= @evaluation.enrolled.to_s
+    %span.highlight-box= @evaluation.enrolled.to_s
     enrolled. Reliability:
-    %span.number_box= "#{@evaluation.reliability}%"
+    %span.highlight-box= "#{@evaluation.reliability}%"
       
   = render(:partial => "scores", :object => @evaluation.scores)
