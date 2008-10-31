@@ -4,7 +4,8 @@ class DepartmentsController < ApplicationController
   end
   
   def show
-    @hme = Department.find(params[:id])    
+    @hme = Department.find(params[:id])
+    @title = "#{DEFAULT_TITLE}: Ratings for the #{@hme.human_name} department"
     @evaluations = @hme.paginated_evaluations(params[:page])
   end
 end

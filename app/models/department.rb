@@ -13,8 +13,8 @@ class Department < HasManyEvaluations
     self.abbrev = abbrev.upcase.strip if abbrev
   end
   
-  def full_name
-    "#{full_name if full_name}"
+  def human_name
+    abbrev
   end
   
   def to_param
