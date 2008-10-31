@@ -1,17 +1,17 @@
-/* COLORS
-#c8c8ff main lavender
-#bf608a dark pink
-#ffbfdc main pink
-#ccffbf main green
+/* COLORS (split complimentary from http://www.colorsontheweb.com/colorwizard.asp)
+#6EC0FF main blue
+#6E8FFF lavender
+#FF6E77 pink
+#FFF56E yellow
 */
 
 body {
-  background: #c8c8ff;
-  color: #333;
+  background: #6EC0FF;
+  color: #000;
 }
 
 a { color: #000; }
-a:visited { color: #666; }
+a:visited { color: #444; }
 a:hover { color: #fff; background-color:#000; }
 
 .center { text-align: center; }
@@ -24,13 +24,13 @@ div.border {
 
 fieldset {
   border:1px solid black;
-  background: #ffbfdc;
+  background: #FFF56E;
 }
 
 legend {
   border: 1px inset black;
   padding: 0.5em;
-  background: #bf608a;
+  background: #6E8FFF;
   color: #fff;
 }
 
@@ -40,7 +40,7 @@ hr {
 }
 
 .button {
-  background: #ccffbf;
+  background: #6E8FFF;
   border: 1px solid black;
 }
 
@@ -75,22 +75,24 @@ td .median {
 }
 
 .header-row {
-  background: #ffbfdc;
+  color: #fff;
+  background: #FF6E77;
   font-family: Times, "Times New Roman", serif;
-  font-size: 110%;
+  font-size: 125%;
 }
 
 .even-row {
-  background: #ccffbf;
+  background: #fff;
 }
 
 .odd-row {
-  background: #ffecbf;
+  background: #bbb;
 }
 
 /* Numbers presented in a purple box. */
-.number_box {
+.highlight-box {
   border: 1px solid black;
+  padding: 0.2em;
   color: #fff;
-  background: #6d6dbf;
+  background: #6E8FFF;
 }

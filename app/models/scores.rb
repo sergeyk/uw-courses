@@ -37,7 +37,7 @@ class Scores < Hash
     scores = self[key][:scores]
     "http://chart.apis.google.com/chart?" +
       "cht=bvs&chbh=40,15&chs=380x140&" +
-      "chf=bg,s,ccffbf&chco=6d6dbf&" +
+      "chf=bg,s,ffffff&chco=6E8FFF&" +
       "chd=t:#{scores.join(',')}&chds=0,#{scores.max}&" +
       "chxt=x,y,r,t&chxl=0:|Very Poor|Poor|Fair|Good|Very Good|Excellent|3:|#{scores.join('|')}&" + 
       "chxr=1,0,#{scores.max}|2,0,#{scores.max}"

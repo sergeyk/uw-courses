@@ -125,4 +125,7 @@ Putting in a little work before writing up the project on my blog and maybe adve
 Ideas and TODOs:
   * Incorporate course names, from UW Time Schedule data probably
   * Guess which department an instructor belongs to based on her courses
+--------------------------------------------------------------------------------
+Thu Oct 30 21:41:23 -0700 2008
+Changed color scheme, seeding some new records.
 puts "-"*80; puts Time.new

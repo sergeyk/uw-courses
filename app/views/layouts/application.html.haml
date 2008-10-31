@@ -3,8 +3,10 @@
   %head
     %meta{'http-equiv' => "content-type", 'content' => "text/html;charset=UTF-8"}
     %title= "Unofficial UW Evaluations Catalog"
+    %meta{:name => "description", :content => "Student course evaluations for University of Washington Seattle, Bothell, Tacoma, and Extension."}
+    %meta{:name => "keywords", :content => "uw, university of washington, washington, uw seattle, uw bothell, uw tacoma, uw extension, evaluations, ratings, professor ratings, professor evaluations, course evaluations"} 
     <link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">    
+    <link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">
     <!–[if IE]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]–>
     = stylesheet_link_tag('main')
     
@@ -17,7 +19,7 @@
         %p
           = link_to "Search Instructors", instructors_path
           |
-          = link_to "See All Departments", departments_path
+          = link_to "Home", root_path
           |
           = link_to "Search Courses", course_titles_path
       #main.span-20.prepend-2.append-2
@@ -39,9 +41,12 @@
           src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
           </script>
         %hr
+      #tips.span-24.center
+        %p Tip: Don't be afraid to click on links!
+        %hr
       #footer.span-24
         .span-12.border.left
-          = mail_to "uwcourses@gmail.com", "contact", :encode => 'javascript'
+          = mail_to "uwcourses@gmail.com", "give feedback or suggest a feature!", :encode => 'javascript'
         .span-12.last.right
           = "#{Evaluation::SIZE} evaluations"
     <script type="text/javascript">

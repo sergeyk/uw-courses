@@ -4,8 +4,7 @@ class CourseTitlesController < ApplicationController
   end
 
   def show
-    @hme = CourseTitle.find(params[:id])  
+    @hme = CourseTitle.find(params[:id])
     @evaluations = @hme.paginated_evaluations(params[:page])
-    render :template => "has_many_evaluations/show"
   end
 end

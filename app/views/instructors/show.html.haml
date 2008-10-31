@@ -1,5 +1,10 @@
-%h2.center= "Statistics for #{@instructor.human_name}"
-%h3.center= "An instructor in the #{@department_abbrevs} department"
+%h2.center
+  Statistics for 
+  %span.highlight-box= @instructor.human_name
+%h3.center
+  An instructor in the 
+  %span.highlight-box= @department_abbrevs
+  department
 .average-ratings
   = render :partial => "evaluations/average_ratings"
 .evaluations

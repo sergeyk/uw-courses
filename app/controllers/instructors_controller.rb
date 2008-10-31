@@ -6,10 +6,9 @@ class InstructorsController < ApplicationController
   
   # Handled by separate instructors view, unlike CourseTitles and Departments
   def show
-    @instructor = Instructor.find(params[:id])
+    @hme = @instructor = Instructor.find(params[:id])
     @department_abbrevs = @instructor.departments.map { |x| x.abbrev }
     @evaluations = @instructor.paginated_evaluations(params[:page])
-    
   end
   
 end
