@@ -29,20 +29,31 @@
         %p.flash= flash[:notice]
         = yield
         %hr
-      #ad-words.span-24.center
-        %p
-          <script type="text/javascript"><!--
-          google_ad_client = "pub-3325828397062003";
-          /* 728x90, created 9/12/08 */
-          google_ad_slot = "3717607161";
-          google_ad_width = 728;
-          google_ad_height = 90;
-          //-->
-          </script>
-          <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-          </script>
-        %hr
+      - if (@ads and not @ads.empty?)
+        #ad-words.span-24.center
+          - if @ads.include?("adsense")
+            %p
+              <script type="text/javascript"><!--
+              google_ad_client = "pub-3325828397062003";
+              /* 728x90, created 9/12/08 */
+              google_ad_slot = "3717607161";
+              google_ad_width = 728;
+              google_ad_height = 90;
+              //-->
+              </script>
+              <script type="text/javascript"
+              src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+              </script>
+          - if @ads.include?("paypal")
+            %p
+              Do you like this site? Donate a dollar!
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="2418072">
+              <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="">
+              <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+              </form>
+          %hr
       #footer.span-24
         .span-12.border.left
           = mail_to "uwcourses@gmail.com", "give feedback or suggest a feature!", :encode => 'javascript'

@@ -54,10 +54,31 @@ describe Evaluation do
       end
       @eval.valid?.should be_false
       
+      # I realize there's a problem that the department is created although
+      # it might never get any valid evaluations
       Department.count(:all).should == 2
       Quarter.count(:all).should == 1
       Instructor.count(:all).should == 1
       CourseTitle.count(:all).should == 1
+      
+      @eval = Evaluation.create do |e|
+        e.quarter_name = "WIN2008"
+        e.dept_abbrev = "CHEM"
+        e.number = "142"
+        e.section = ""
+        e.instructor_name = "Dick Hunter"
+        e.surveyed = 173
+        e.enrolled = 277
+        e.scores = Scores.new({:contribution=>{:scores=>[0, 2, 8, 28, 39, 24], :median=>3.83}, :effectiveness=>{:scores=>[0, 1, 13, 25, 38, 23], :median=>3.79}, :content=>{:scores=>[0, 1, 8, 41, 37, 14], :median=>3.52}, :interest=>{:scores=>[1, 2, 13, 31, 34, 18], :median=>3.57}, :learned=>{:scores=>[0, 4, 11, 31, 39, 15], :median=>3.62}, :grading=>{:scores=>[1, 6, 15, 27, 36, 14], :median=>3.5}, :whole=>{:scores=>[0, 1, 8, 39, 39, 12], :median=>3.54}})
+      end
+      @eval.valid?.should be_false
+      
+      # I realize there's a problem that the department is created although
+      # it might never get any valid evaluations
+      Department.count(:all).should == 2
+      Quarter.count(:all).should == 1
+      Instructor.count(:all).should == 1
+      CourseTitle.count(:all).should == 2
     end
     
     it "should not be valid if bad or no quarter" do

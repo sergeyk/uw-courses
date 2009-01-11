@@ -16,13 +16,19 @@ class Evaluation < ActiveRecord::Base
     self.department = Department.find_or_create_by_abbrev(dept_abbrev)
   end
   
-  # TODO: dept MUST be set here
+  # NOTE: dept MUST be set here. This means that in our seed data,
+  # dept_abbrev must precede number
   def number=(number)
-    if (department)
+    if (department and number and not number.blank?)
       self.course_title = CourseTitle.find_or_initialize_by_department_id_and_number(department.id, number)
     else
       self.course_title = nil
     end
+  end
+  
+  # Must have a section to be valid
+  def section=(section)
+    self[:section] = section
   end
   
   def instructor_name=(instructor_name)

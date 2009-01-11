@@ -13,5 +13,20 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
   
+  before_filter :set_title, :set_ads
+  
   DEFAULT_TITLE = "Unofficial University of Washington Course Evaluations Catalog"
+  
+  def set_title
+    @title = DEFAULT_TITLE
+  end
+  
+  # Displays the Donate button with 2/3 probability
+  def set_ads
+    if (rand(3) == 1)
+      @ads = ["adsense"]
+    else
+      @ads = ["paypal"]
+    end
+  end
 end
