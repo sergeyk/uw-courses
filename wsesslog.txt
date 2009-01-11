@@ -1,2 +1,0 @@
-# session 1
-/instructors/ think=2.0
