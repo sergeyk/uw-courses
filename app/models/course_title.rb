@@ -17,10 +17,9 @@ class CourseTitle < HasManyEvaluations
   
   # Takes a query string and page number
   # Returns a will_paginate collection of evaluations for a CourseTitle that matches the query, or nil
-  def self.search(query, page)
+  def self.search(query, page)    
     if query.blank?
-      return CourseTitle.paginate(:page => page, :per_page => 5,
-        :include => [:department], :order => "departments.abbrev, number ASC")
+      return CourseTitle.paginate(:page => page, :per_page => 5, :include => [:department], :order => "departments.abbrev, number ASC")
     end
     
     course_title = self.find_with_query(query)
@@ -30,6 +29,7 @@ class CourseTitle < HasManyEvaluations
   def self.find_with_query(query)
     match = query.match(/([A-z| ]+)([0-9]+)/)
     return nil unless match and match.size == 3
+    
     dept = Department.find_by_abbrev(match[1].strip.upcase)
     number = match[2].strip
     course_title = CourseTitle.find_by_department_id_and_number(dept, number)
