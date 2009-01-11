@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{'http-equiv' => "content-type", 'content' => "text/html;charset=UTF-8"}
+    %title= @title ? @title : "Unofficial University of Washington Course Evaluations Catalog"
+    %meta{:name => "description", :content => "Student course evaluations for University of Washington Seattle, Bothell, Tacoma, and Extension."}
+    %meta{:name => "keywords", :content => "uw, university of washington, washington, uw seattle, uw bothell, uw tacoma, uw extension, evaluations, ratings, professor ratings, professor evaluations, course evaluations"} 
+    <link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">
+    <!–[if IE]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]–>
+    = stylesheet_link_tag('main')
+    
+  %body
+    .container
+      #span-24.center
+        = yield
