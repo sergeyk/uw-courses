@@ -3,8 +3,8 @@
   %head
     %meta{'http-equiv' => "content-type", 'content' => "text/html;charset=UTF-8"}
     %title= @title ? @title : "Unofficial University of Washington Course Evaluations Catalog"
-    %meta{:name => "description", :content => "Student course evaluations for University of Washington Seattle, Bothell, Tacoma, and Extension."}
-    %meta{:name => "keywords", :content => "uw, university of washington, washington, uw seattle, uw bothell, uw tacoma, uw extension, evaluations, ratings, professor ratings, professor evaluations, course evaluations"} 
+    %meta{:name => "description", :content => "Student course evaluations for the University of Washington."}
+    %meta{:name => "keywords", :content => "uw, university of washington, washington, uw seattle, uw bothell, uw tacoma, uw extension, evaluations, ratings, course ratings, professor ratings, course evaluations, professor evaluations, courses"} 
     <link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">
     <!–[if IE]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]–>
@@ -46,7 +46,7 @@
               </script>
           - if @ads.include?("paypal")
             %p
-              Do you like this site? Donate a buck!
+              Do you like this site?
               <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
               <input type="hidden" name="cmd" value="_s-xclick">
               <input type="hidden" name="hosted_button_id" value="2418072">
